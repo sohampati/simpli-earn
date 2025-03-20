@@ -9,6 +9,7 @@ For any questions, please reach out on Slack/other preferred mode of communicati
 - Tried few runs on Coinbase/Alphabet transcripts and seems to work decently
 - Need to reload if you want to try it on a new video, but this is just a Streamlit problem and should work fine on backend
 - The user would have to start a new conversation anyway
+- NEW: Added CLI file to communicate via command-line - most probably will be using similar file to just have the API routes call these functions.
 
 ## Feb 27, 2025 (Neil)
 
