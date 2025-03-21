@@ -1,5 +1,5 @@
-import { FaExpandAlt } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
+"use client";
+
 import { TbSend2 } from "react-icons/tb";
 import Message from "./Message";
 
@@ -19,29 +19,22 @@ export default function ChatBot() {
     ]
 
     return (
-        <div className="bg-white/4 text-white rounded-[30px] w-full h-full border-[0.85px] border-white/25 p-5">
-            <div className="relative w-full h-full">
-                <div className="flex justify-between">
-                    <FaExpandAlt size={20} />
-                    <h1 className="font-bold text-lg">SimpliChat</h1>
-                    <IoClose size={25} />
-                </div>
-                <div className="">
-                    {messages.map((message) => (
-                        <Message
-                            key={message.id}
-                            text={message.text}
-                            sender={message.sender}
-                        />
-                    ))}
-                </div>
-                <div className="absolute w-full bottom-5 flex flex-col items-end">
-                    <textarea placeholder="Message RAG Chatbot" className="w-full p-3 h-[120px] bg-white/4 text-white rounded-2xl border-[0.85px] border-white/25"></textarea>
-                    <div className="-mt-13 mr-3 py-1.5 px-3 bg-white/15 text-white rounded-full border-[0.85px] border-white/25">
-                        <TbSend2 size={25} />
-                    </div>
+        <>
+            <div className="">
+                {messages.map((message) => (
+                    <Message
+                        key={message.id}
+                        text={message.text}
+                        sender={message.sender}
+                    />
+                ))}
+            </div>
+            <div className="absolute w-full bottom-5 flex flex-col items-end">
+                <textarea placeholder="Message RAG Chatbot" className="w-full p-3 h-[120px] bg-white/4 text-white rounded-2xl border-[0.85px] border-white/25"></textarea>
+                <div className="-mt-13 mr-3 py-1.5 px-3 bg-white/15 text-white rounded-full border-[0.85px] border-white/25">
+                    <TbSend2 size={25} />
                 </div>
             </div>
-        </div>
+        </>
     );
 }
