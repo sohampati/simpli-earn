@@ -6,7 +6,7 @@ export default function ChartsFrame() {
   const [activeTab, setActiveTab] = useState("stock");
 
   return (
-    <div className="flex flex-col text-white w-full h-full mt-10"> {/* Added mt-10 for margin-top */}
+    <div className="flex flex-col text-white w-full h-full mt-10">
       <div className="bg-white/4 text-white rounded-[30px] w-full h-full border border-[0.85px] border-white/25">
         {activeTab === "stock" ? (
           <div className="flex flex-col w-full h-full relative">
@@ -22,14 +22,14 @@ export default function ChartsFrame() {
               </button>
 
               {/* Sentiment Button */}
-              <button
+                <button
                 className="flex justify-end items-end rounded-bl-[23px] rounded-tr-[30px] w-1/2 h-[40px] border-b-[0.85px] border-white/25 cursor-pointer relative"
                 onClick={() => setActiveTab("sentiment")}
-              >
+                >
                 <h1 className="flex justify-center items-center font-bold text-sm font-montserrat w-full h-full text-white opacity-50">
                   Time-Series Sentiment
                 </h1>
-              </button>
+                </button>
 
               {/* Pseudo-Element Overlay to Seamlessly Blend the Borders */}
                 <div className="absolute top-1/2 left-1/2 w-[0.5px] h-[18px] bg-white/12 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transform -rotate-20"></div>
