@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from "next/image";
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const NavBar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,6 +25,24 @@ const NavBar: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const handleOutSideClick = (e: MouseEvent) => {
+      if (!ref.current?.contains(e.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("mousedown", handleOutSideClick);
+
+    return () => {
+      window.removeEventListener("mousedown", handleOutSideClick);
+    };
+  }, [ref]);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   return (
     <nav
       style={{
@@ -29,7 +50,8 @@ const NavBar: React.FC = () => {
         top: '20px',
         left: '50%',
         transform: 'translateX(-50%)',
-        backgroundColor: 'rgba(15, 17, 15, 0.98)',
+        border: '1px solid rgba(255, 255, 255, 0.17)',
+        backgroundColor: '#121612',
         borderRadius: '50px',
         padding: '10px 20px',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -39,7 +61,6 @@ const NavBar: React.FC = () => {
         zIndex: 1000,
         width: 'auto',
         maxWidth: '1200px',
-        border: '1px solid rgb(84, 84, 84)',
         gap: '40px', // Padding between components
       }}
       className="font-montserrat"
@@ -62,8 +83,8 @@ const NavBar: React.FC = () => {
             height={23}
           />
           <span
+            className="text-lg sm:text-xl"
             style={{
-              fontSize: '1.3rem',
               fontWeight: '440',
               color: 'white',
               letterSpacing: '1px',
@@ -83,12 +104,12 @@ const NavBar: React.FC = () => {
         }}
         className="nav-links"
       >
-        <a href="/about" className="nav-link"> About Us </a>
-        <a href="/faq" className="nav-link"> FAQ&rsquo;s </a>
-        <a href="#contactUs"className="nav-link"> Contact Us </a>
+        <Link href="/about" className="nav-link">About Us</Link>
+        <Link href="/faq" className="nav-link">FAQ&rsquo;s</Link>
+        <Link href="#contactUs"className="nav-link">Contact Us</Link>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+      <div className="flex items-center gap-2 sm:gap-5">
         {/* Hamburger Menu*/}
         <button
           onClick={toggleMenu}
@@ -134,59 +155,62 @@ const NavBar: React.FC = () => {
         </button>
 
         {/* Open Dashboard Button */}
-        <a
+        <Link
           href="/dashboard"
           style={{
             textDecoration: 'none',
-            backgroundColor: '#81D18D',
-            color: 'black',
             borderRadius: '50px',
-            padding: '8px 16px',
             fontWeight: 'bold',
             whiteSpace: 'nowrap', // Prevent text wrapping
           }}
-          className="dashboard-button"
+          className="dashboard-button bg-green text-[#121612] transition-all px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base"
         >
           Try Now
-        </a>
+        </Link>
       </div>
 
       {/* Mobile Menu (Hidden by Default) */}
       {isMenuOpen && (
         <div
+        
+          ref={ref}
           style={{
             position: 'fixed',
             top: '80px',
             left: '0',
             right: '0',
-            backgroundColor: 'black',
+            backgroundColor: 'rgba(15, 17, 15, 0.995)',
             padding: '20px',
             display: 'flex',
             flexDirection: 'column',
             gap: '16px',
             zIndex: 999,
-            border: '1px solid #81D18D',
+            border: '1px solid rgba(255, 255, 255, 0.17)',
+            borderRadius: '20px',
           }}
           className="mobile-menu"
         >
-          <a
-            href="#about"
-            style={{ textDecoration: 'none', color: 'white', fontWeight: '300' }}
+          <Link
+            href="/about"
+            className="text-white hover:text-green"
+            style={{ textDecoration: 'none', fontWeight: '300' }}
           >
             About Us
-          </a>
-          <a
-            href="#FAQ"
-            style={{ textDecoration: 'none', color: 'white', fontWeight: '300' }}
+          </Link>
+          <Link
+            href="/faq"
+            className="text-white hover:text-green"
+            style={{ textDecoration: 'none', fontWeight: '300' }}
           >
             FAQ&rsquo;s
-          </a>
-          <a
+          </Link>
+          <Link
             href="#contactUs"
-            style={{ textDecoration: 'none', color: 'white', fontWeight: '300' }}
+            className="text-white hover:text-green"
+            style={{ textDecoration: 'none', fontWeight: '300' }}
           >
             Contact Us
-          </a>
+          </Link>
         </div>
       )}
     </nav>

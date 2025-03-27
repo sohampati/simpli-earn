@@ -52,29 +52,11 @@ body {
   }
 
   /* Center-align text with each word on a new line */
-  .nav-links a,
-  .mobile-menu a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
 
   .mobile-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  /* Hover effect for mobile menu items */
-  .mobile-menu a {
-    padding: 8px 16px;
-    border-radius: 50px;
-    transition: background-color 0.3s;
-  }
-
-  .mobile-menu a:hover {
-    background-color: #81D18D; 
   }
 }
 
@@ -92,7 +74,7 @@ body {
 
 /* Hover effect for the Open Dashboard button */
 .dashboard-button:hover {
-  background-color: #3e5a43 !important; 
+  background-color: #609D6A !important; 
 }
 
 /* Hover effect for the hamburger menu bars */

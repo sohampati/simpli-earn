@@ -2,6 +2,7 @@ import styles from './about.module.css';
 import Image from "next/image";
 import { Metadata } from "next";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "About Us | SimpliEarn",
@@ -83,14 +84,14 @@ export default function AboutUs() {
                 {/* Social Icons - idk what images to use so there are none rn*/}
                 <div className={styles.socialIcons}>
                   {member.socials.linkedin && (
-                    <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Link href={member.socials.linkedin} target="_blank" rel="noopener noreferrer">
                       <FaLinkedin />
-                    </a>
+                    </Link>
                   )}
                   {member.socials.github && (
-                    <a href={member.socials.github} target="_blank" rel="noopener noreferrer">
+                    <Link href={member.socials.github} target="_blank" rel="noopener noreferrer">
                       <FaGithub />
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
