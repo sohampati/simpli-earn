@@ -7,13 +7,13 @@ export default function ChartsFrame() {
 
   return (
     <div className="flex flex-col text-white w-full h-full mt-10">
-      <div className="bg-white/4 text-white rounded-[30px] w-full h-full border border-[0.85px] border-white/25">
+      <div className="bg-white/4 text-white rounded-[30px] w-full h-full border border-[1px] border-white/25">
         {activeTab === "stock" ? (
           <div className="flex flex-col w-full h-full relative">
             <div className="flex flex-row relative">
               {/* Stock Button */}
               <button
-                className="flex justify-start items-start rounded-tl-[30px] rounded-tr-[23px] w-1/2 h-[40px] border-t-[0.85px] border-white/25 cursor-pointer relative"
+                className="flex justify-start items-start rounded-tl-[30px] rounded-tr-[23px] w-1/2 h-[40px] border-t-[1px] border-white/25 cursor-pointer relative"
                 onClick={() => setActiveTab("stock")}
               >
                 <h1 className="flex justify-center items-center font-bold text-sm font-montserrat w-full h-full">
@@ -23,7 +23,7 @@ export default function ChartsFrame() {
 
               {/* Sentiment Button */}
                 <button
-                className="flex justify-end items-end rounded-bl-[23px] rounded-tr-[30px] w-1/2 h-[40px] border-b-[0.85px] border-white/25 cursor-pointer relative"
+                className="flex justify-end items-end rounded-bl-[23px] rounded-tr-[30px] w-1/2 h-[40px] border-b-[1px] border-white/25 cursor-pointer relative"
                 onClick={() => setActiveTab("sentiment")}
                 >
                 <h1 className="flex justify-center items-center font-bold text-sm font-montserrat w-full h-full text-white opacity-50">
@@ -44,7 +44,7 @@ export default function ChartsFrame() {
             <div className="flex flex-row relative">
               {/* Stock Button */}
               <button
-                className="flex justify-start items-start rounded-tl-[30px] rounded-br-[23px] w-1/2 h-[40px] border-b-[0.85px] border-white/25 cursor-pointer relative"
+                className="flex justify-start items-start rounded-tl-[30px] rounded-br-[23px] w-1/2 h-[40px] border-b-[1px] border-white/25 cursor-pointer relative"
                 onClick={() => setActiveTab("stock")}
               >
                 <h1 className="flex justify-center items-center font-bold text-sm font-montserrat w-full h-full opacity-50">
@@ -54,7 +54,7 @@ export default function ChartsFrame() {
 
               {/* Sentiment Button */}
               <button
-                className="flex justify-end items-end rounded-tl-[23px] rounded-tr-[30px] w-1/2 h-[40px] border-t-[0.85px] border-white/25 cursor-pointer relative"
+                className="flex justify-end items-end rounded-tl-[23px] rounded-tr-[30px] w-1/2 h-[40px] border-t-[1px] border-white/25 cursor-pointer relative"
                 onClick={() => setActiveTab("sentiment")}
               >
                 <h1 className="flex justify-center items-center font-bold text-sm font-montserrat w-full h-full">
