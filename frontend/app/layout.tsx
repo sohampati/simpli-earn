@@ -7,6 +7,11 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+});
+
 export const metadata: Metadata = {
   title: "SimpliEarn",
   description: "Investing made simple",
