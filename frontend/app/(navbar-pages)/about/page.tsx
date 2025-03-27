@@ -1,4 +1,4 @@
-import NavBar from "@/app/components/navbar";
+import NavBar from "@/components/Navbar";
 import Head from 'next/head';
 import styles from './about.module.css';
 

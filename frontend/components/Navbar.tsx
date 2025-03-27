@@ -81,8 +81,8 @@ const NavBar: React.FC = () => {
         }}
         className="nav-links"
       >
-        <a href="../navbar-pages/about" className="nav-link"> About Us </a>
-        <a href="../navbar-pages/faq" className="nav-link"> FAQ's </a>
+        <a href="/about" className="nav-link"> About Us </a>
+        <a href="/faq" className="nav-link"> FAQ's </a>
         <a href="#contactUs"className="nav-link"> Contact Us </a>
       </div>
 
