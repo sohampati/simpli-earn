@@ -7,7 +7,7 @@ export default function ChartsFrame() {
 
   return (
     <div className="flex flex-col text-white w-full h-full mt-10">
-      <div className="bg-white/4 text-white rounded-[30px] w-full h-full border border-[1px] border-white/25">
+      <div className="bg-white/4 text-white rounded-[30px] w-full h-full border border-white/25">
         {activeTab === "stock" ? (
           <div className="flex flex-col w-full h-full relative">
             <div className="flex flex-row relative">

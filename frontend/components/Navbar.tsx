@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Image from "next/image";
 import Link from 'next/link';
 
 const NavBar: React.FC = () => {
@@ -28,7 +29,7 @@ const NavBar: React.FC = () => {
         top: '20px',
         left: '50%',
         transform: 'translateX(-50%)',
-        backgroundColor: 'black',
+        backgroundColor: 'rgba(15, 17, 15, 0.98)',
         borderRadius: '50px',
         padding: '10px 20px',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -54,10 +55,11 @@ const NavBar: React.FC = () => {
           }}
           className="logo-container"
         >
-          <img
-            src="\logo.png"
+          <Image
+            src="/logo.png"
             alt="Logo"
-            style={{ width: '23px', height: '23px' }}
+            width={23}
+            height={23}
           />
           <span
             style={{
@@ -82,7 +84,7 @@ const NavBar: React.FC = () => {
         className="nav-links"
       >
         <a href="/about" className="nav-link"> About Us </a>
-        <a href="/faq" className="nav-link"> FAQ's </a>
+        <a href="/faq" className="nav-link"> FAQ&rsquo;s </a>
         <a href="#contactUs"className="nav-link"> Contact Us </a>
       </div>
 
@@ -133,7 +135,7 @@ const NavBar: React.FC = () => {
 
         {/* Open Dashboard Button */}
         <a
-          href="#dashboard"
+          href="/dashboard"
           style={{
             textDecoration: 'none',
             backgroundColor: '#81D18D',
@@ -177,7 +179,7 @@ const NavBar: React.FC = () => {
             href="#FAQ"
             style={{ textDecoration: 'none', color: 'white', fontWeight: '300' }}
           >
-            FAQ's
+            FAQ&rsquo;s
           </a>
           <a
             href="#contactUs"

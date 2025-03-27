@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from 'next/link'
+import Link from 'next/link';
 import { FaSearch, FaChevronDown } from "react-icons/fa";
 import { TbSend2 } from "react-icons/tb";
 import mockCalls from "@/public/data/mock-calls.json";

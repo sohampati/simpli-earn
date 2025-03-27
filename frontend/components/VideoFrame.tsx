@@ -12,7 +12,7 @@ export default function VideoFrame() {
          {/* Pseudo-Element Overlay to Seamlessly Blend the Borders */}
         <div className="absolute top-1/2 left-9/10 w-[0.5px] h-[18px] bg-white/12 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transform -rotate-20"></div>
       </div>
-      <div className="justify-center items-center bg-white/4 text-white mt-[40px] rounded-b-[30px] rounded-tr-[30px] overflow-hidden aspect-16/9 w-full h-full border border-[1px] border-white/25">
+      <div className="justify-center items-center bg-white/4 text-white mt-[40px] rounded-b-[30px] rounded-tr-[30px] overflow-hidden aspect-16/9 w-full h-full border border-white/25">
         <iframe
           width="100%"
           height="100%"
