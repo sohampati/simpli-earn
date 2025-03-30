@@ -1,16 +1,39 @@
 "use client";
 
 import { IoClose } from "react-icons/io5";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ChatBot from "./ChatBot";
 import { FaExpandAlt, FaCompressAlt } from "react-icons/fa";
 
-export default function ChatFrame() {
+interface ChatFrameProps {
+    onMinimizedChange: (minimized: boolean) => void;
+    minimized: boolean;
+}
+
+export default function ChatFrame({ onMinimizedChange, minimized }: ChatFrameProps) {
     const [fullscreen, setFullscreen] = useState(false);
+    // Remove local minimized state since we're using props now
+
+    // Sync local UI with parent's minimized state
+    useEffect(() => {
+        if (minimized) {
+            setFullscreen(false);
+        }
+    }, [minimized]);
+
+    const handleMinimize = () => {
+        onMinimizedChange(true); // Notify parent
+        onMinimizedChange(false); // Notify parent
+    };
+
+    const handleExpand = () => {
+        onMinimizedChange(false); // Notify parent
+        setFullscreen(true);
+    };
 
     if (fullscreen) {
         return (
-            <div className="flex flex-col w-full h-full relative -mt-12">
+            <div className="flex flex-col w-full h-full relative">
                 <div className="grid grid-cols-[1fr_400px_1fr] relative justify-between">
                     {/* SimpliChat Button */}
                     <div
@@ -55,13 +78,17 @@ export default function ChatFrame() {
         );
     }
 
+    if (minimized) {
+        return null; // Or render a minimized chat button
+    }
+
     return (
-        <div className="bg-white/4 text-white rounded-[30px] w-full h-full border-[0.85px] border-white/35 p-5">
+        <div className="bg-white/4 text-white rounded-[30px] w-full h-full border-[1px] border-white/25 p-5">
             <div className="relative w-full h-full">
                 <div className="flex justify-between">
-                    <FaExpandAlt className="cursor-pointer" size={20} onClick={() => setFullscreen(true)} />
+                    <FaExpandAlt className="cursor-pointer" size={20} onClick={handleExpand} />
                     <h1 className="font-bold text-lg">SimpliChat</h1>
-                    <IoClose size={25} />
+                    <IoClose size={25} className="cursor-pointer" onClick={handleMinimize} />
                 </div>
                 <ChatBot />
             </div>
