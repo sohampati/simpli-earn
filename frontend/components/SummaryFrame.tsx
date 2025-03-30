@@ -2,9 +2,10 @@ export default function SummaryFrame({ halfHeight = false }: { halfHeight?: bool
   return (
     <div className="flex w-full h-full">
       <div
-        className={`w-full h-full font-montserrat text-white mt-[40px] justify-center items-center bg-white/4 rounded-tr-[30px] rounded-bl-[30px] rounded-tl-[30px] border-t-[1px] border-l-[1px] border-white/25 relative overflow-scroll ${
+        className={`w-full h-full font-montserrat text-white mt-[40px] justify-center items-center bg-white/4 rounded-tr-[30px] rounded-bl-[30px] rounded-tl-[30px] border-t-[1px] border-l-[1px] border-white/25 relative overflow-auto ${
           halfHeight ? 'border-b-[1px] border-r-[1px] rounded-br-[30px]' : ''
         }`}
+        style={{scrollbarColor: '#ffffff9f #ffffff0f'}}
       >
         {/* Keep only if not halfHeight */}
         {!halfHeight && (

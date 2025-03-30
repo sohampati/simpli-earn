@@ -21,7 +21,8 @@ export default function ChatBot() {
     return (
         <>
             <div className="grid grid-cols-1 grid-rows-2 gap-0 max-h-100 ">
-                <div className="flex row-start-1 row-span-1 overflow-scroll">
+                <div className="flex row-start-1 row-span-1 overflow-auto"
+                style={{scrollbarColor: '#ffffff9f #ffffff00'}}>
                     <div className="">
                         {messages.map((message) => (
                             <Message
