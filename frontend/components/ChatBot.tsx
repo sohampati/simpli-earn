@@ -4,7 +4,7 @@ import { TbSend2 } from "react-icons/tb";
 import { useEffect, useRef, useState } from "react";
 import Message from "./Message";
 
-export default function ChatBot({ tall = false }: { tall?: boolean }) {
+export default function ChatBot() {
     const messageArray = [
         {
             id: 1,
@@ -63,15 +63,15 @@ export default function ChatBot({ tall = false }: { tall?: boolean }) {
 
     return (
         <>
-            <div className={`grid grid-cols-1 grid-rows-2 gap-0 ${tall ? "max-h-160" : "max-h-120"}`}>
-                <div className="flex row-start-1 row-span-1 overflow-auto" ref={messageContainerRef} style={{ scrollbarColor: '#ffffff9f #ffffff00' }}>
+            <div className={`grid grid-cols-1 grid-rows-2 gap-0 max-h-[calc(100%-170px)]`}>
+                <div className="flex row-start-1 row-span-2 overflow-auto" ref={messageContainerRef} style={{ scrollbarColor: '#ffffff9f #ffffff00' }}>
                     <div className="">
                         {messages.map((message) => (
                             <Message key={message.id} text={message.text} sender={message.sender} />
                         ))}
                     </div>
                 </div>
-                <div className="flex row-start-2 row-span-1">
+                
                     <div className="absolute w-full bottom-5 flex flex-col items-end">
                         <textarea
                             value={userInput}
@@ -87,7 +87,7 @@ export default function ChatBot({ tall = false }: { tall?: boolean }) {
                             <TbSend2 size={25} />
                         </div>
                     </div>
-                </div>
+                
             </div>
         </>
     );

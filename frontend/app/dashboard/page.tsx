@@ -65,7 +65,7 @@ export default function Dashboard() {
             <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-124 pb-[40px]">
               <ChartsFrame />
             </div>
-            <div className="flex justify-start items-start mr-[40px] py-[40px] col-start-14 col-span-8 row-span-1 row-start-2 max-h-134">
+            <div className="flex justify-start items-start mr-[40px] pb-[40px] col-start-14 col-span-8 row-span-1 row-start-2 max-h-134">
               <ChatFrame 
                 onMinimizedChange={handleChatMinimized}
                 minimized={chatMinimized}
