@@ -1,8 +1,8 @@
 export default function VideoFrame() {
   return (
-    <div className="flex text-white w-full">
-      <div className="flex flex-row absolute w-3/8 h-[40px]">
-        <button className="relative w-9/10 2xl:w-[500px] h-[40px] border-t-[1px] border-l-[1px] border-white/25 rounded-tl-[30px] rounded-tr-[23px] px-8 flex items-center">
+    <div className="flex text-white w-full relative mt-[20px] lg:mt-0">
+      <div className="flex flex-row absolute w-full h-[40px]">
+        <button className="relative w-[53%] h-[40px] border-t-[1px] border-l-[1px] border-white/25 rounded-tl-[30px] rounded-tr-[23px] px-8 flex items-center">
           <h1 className="w-full overflow-hidden text-ellipsis whitespace-nowrap font-bold text-sm font-montserrat">
             Tesla - Tesla Q4 and full year 2024 Financial Results and Q&A Webcast
           </h1>
