@@ -84,7 +84,12 @@ export default function Dashboard() {
           </main></>}
         </div>
       )}
-      {fullscreen && <FullChat setFullscreen={setFullscreen} />}
+      {fullscreen && (
+          <FullChat 
+              setFullscreen={setFullscreen} 
+              onMinimizedChange={handleChatMinimized}
+          />
+      )}
     </div>
   );
 }
