@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export default function SummaryFrame({ setActiveDisplay, halfHeight = false }: { setActiveDisplay: Dispatch<SetStateAction<string>>, halfHeight?: boolean }) {
   return (
-    <div className={`${halfHeight ? "mt-[40px]" : ""} flex w-full h-full relative`}>
+    <div className="mt-[40px] flex w-full h-full relative">
       {/* Keep only if not halfHeight */}
       {!halfHeight && (
         <>
