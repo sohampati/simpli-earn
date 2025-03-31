@@ -49,7 +49,7 @@ export default function FullChat({ setFullscreen }: { setFullscreen: Dispatch<Se
                             <p>chat history</p>
                         </div>
                     </div>
-                    <div className="-mt-10 pt-18 pb-12 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b-[0.85px] border-x-[0.85px] border-white/35"><div className="relative h-full"><ChatBot /></div></div>
+                    <div className="-mt-10 pt-18 pb-8 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b-[0.85px] border-x-[0.85px] border-white/35"><div className="relative h-full"><ChatBot /></div></div>
                 </div>
             </div>
         </div>
