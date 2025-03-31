@@ -42,7 +42,7 @@ export default function Dashboard() {
             <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1">
               <VideoFrame />
             </div>
-            <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-2 row-start-1 max-h-[calc(100%-40px)]">
+            <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-2 row-start-1 max-h-[calc(100%)]">
               <SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} />
             </div>
             <div className="flex justify-start items-start ml-[40px] pb-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-[calc(100%-40px)]">
