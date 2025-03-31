@@ -37,7 +37,7 @@ export default function FullChat({ setFullscreen }: { setFullscreen: Dispatch<Se
                     <div className="absolute top-1/2 left-1/2 w-[0.5px] h-[18px] bg-white/12 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transform -rotate-20"></div>
                 </div>
 
-                <div className="flex w-full min-h-[83vh]">
+                <div className="flex w-full min-h-[83vh] h-full">
                     <div className="w-1/4 -mt-10 border-white/35 border-x-[0.85px] border-b-[0.85px] bg-white/12 rounded-l-[30px] hidden lg:block">
                         <div className="w-full flex justify-between p-5">
                             <FaCompressAlt className="cursor-pointer z-100" size={20} onClick={() => setFullscreen(false)} />
