@@ -7,10 +7,12 @@ import ChartsFrame from "@/components/ChartsFrame";
 import ChatIcon from "@/components/ChatIcon";
 import ChatFrame from "@/components/ChatFrame";
 import { useState } from "react";
+import FullChat from "@/components/FullChat";
 
 export default function Dashboard() {
   const [activeDisplay, setActiveDisplay] = useState("full");
   const [chatMinimized, setChatMinimized] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
 
   // Function to handle chat minimization
   interface ChatMinimizedHandler {
@@ -62,7 +64,7 @@ export default function Dashboard() {
           <div className="flex justify-center">
             <DashboardTab />
           </div>
-          <main className="grid grid-cols-21 grid-rows-2 gap-[40px] row-end-auto">
+          {!fullscreen && <><main className="grid grid-cols-21 grid-rows-2 gap-[40px] row-end-auto">
             <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 max-h-134">
               <VideoFrame />
             </div>
@@ -76,11 +78,13 @@ export default function Dashboard() {
               <ChatFrame 
                 onMinimizedChange={handleChatMinimized}
                 minimized={chatMinimized}
+                setFullscreen={setFullscreen}
               />
             </div>
-          </main>
+          </main></>}
         </div>
       )}
+      {fullscreen && <FullChat setFullscreen={setFullscreen} />}
     </div>
   );
 }
