@@ -39,14 +39,17 @@ export default function Dashboard() {
             <DashboardTab />
           </div>
           <main className="grid grid-cols-21 grid-rows-2 gap-[40px]">
-            <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1">
+            <div className="flex flex-col gap-[40px] justify-start items-start ml-[40px] col-start-1 col-span-13 row-start-1 row-span-2">
               <VideoFrame />
+              <div className="w-full h-full row-span-2 pb-[40px]">
+              <ChartsFrame />
+              </div>
             </div>
             <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-2 row-start-1 max-h-[calc(100%)]">
               <SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} />
             </div>
             <div className="flex justify-start items-start ml-[40px] pb-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-[calc(100%-40px)]">
-              <ChartsFrame />
+              
             </div>
           </main>
         </div>
@@ -56,14 +59,14 @@ export default function Dashboard() {
             <DashboardTab />
           </div>
           {!fullscreen && <><main className="grid grid-cols-21 grid-rows-2 gap-[40px] row-end-auto">
-            <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 max-h-134">
+            <div className="flex flex-col gap-[40px] justify-start items-start ml-[40px] col-start-1 col-span-13 row-start-1 row-span-2">
               <VideoFrame />
+              <div className="w-full h-full row-span-2 pb-[40px]">
+              <ChartsFrame />
+              </div>
             </div>
             <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-1 row-start-1 max-h-[575px]">
               <SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} />
-            </div>
-            <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-124 pb-[40px]">
-              <ChartsFrame />
             </div>
             <div className="flex justify-start items-start mr-[40px] pb-[40px] col-start-14 col-span-8 row-span-1 row-start-2 max-h-134">
               <ChatFrame 

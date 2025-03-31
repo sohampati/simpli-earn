@@ -6,7 +6,7 @@ export default function ChartsFrame() {
   const [activeTab, setActiveTab] = useState("stock");
 
   return (
-    <div className="flex flex-col text-white w-full h-full mt-10">
+    <div className="flex flex-col text-white w-full h-full">
       <div className="bg-white/4 text-white rounded-[30px] w-full h-full border border-white/25">
         {activeTab === "stock" ? (
           <div className="flex flex-col w-full h-full relative">
