@@ -44,7 +44,7 @@ export default function SummaryFrame({ setActiveDisplay, halfHeight = false }: {
             >
               <Image src="/inset-corner.svg" alt="" width={144} height={144} />
             </span>}
-            <p className="p-8 -mb-[144px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in dui
+            <p className="pt-4 px-8 pb-8 -mb-[144px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in dui
               quis orci ultricies aliquet nec sed enim. Mauris id rutrum nulla, et
               ornare leo. Donec aliquet malesuada tellus, eu laoreet lectus tincidunt
               ut. Quisque lacus magna, interdum eu urna ac, aliquet gravida orci.
