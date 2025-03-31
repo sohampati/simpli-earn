@@ -4,7 +4,6 @@ import DashboardTab from "@/components/DashboardTab";
 import VideoFrame from "@/components/VideoFrame";
 import SummaryFrame from "@/components/SummaryFrame";
 import ChartsFrame from "@/components/ChartsFrame";
-import ChatIcon from "@/components/ChatIcon";
 import ChatFrame from "@/components/ChatFrame";
 import { useState } from "react";
 import FullChat from "@/components/FullChat";
@@ -44,20 +43,12 @@ export default function Dashboard() {
               <VideoFrame />
             </div>
             <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-2 row-start-1 max-h-[calc(100%-40px)]">
-              <SummaryFrame halfHeight={activeDisplay !== "full"} />
+              <SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} />
             </div>
             <div className="flex justify-start items-start ml-[40px] pb-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-[calc(100%-40px)]">
               <ChartsFrame />
             </div>
           </main>
-          <div className="absolute bottom-[40px] right-[40px]">
-            <button
-              onClick={() => setActiveDisplay("half")}
-              disabled={chatMinimized} // Optional: disable if chat is minimized
-            >
-              <ChatIcon />
-            </button>
-          </div>
         </div>
       ) : (
         <div className="w-full h-full">
@@ -69,7 +60,7 @@ export default function Dashboard() {
               <VideoFrame />
             </div>
             <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-1 row-start-1 max-h-[575px]">
-              <SummaryFrame halfHeight={activeDisplay !== "full"} />
+              <SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} />
             </div>
             <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-124 pb-[40px]">
               <ChartsFrame />
