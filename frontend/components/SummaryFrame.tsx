@@ -26,7 +26,7 @@ export default function SummaryFrame({ setActiveDisplay, halfHeight = false }: {
         </>
       )}
       <div
-        className={`w-full font-montserrat text-white mt-[40px] justify-center items-center bg-white/4 rounded-[30px] border border-white/25 overflow-auto max-h-[160vh] relative`}
+        className={`w-full font-montserrat text-white mt-[40px] justify-center items-center bg-white/4 rounded-[30px] border border-white/25 overflow-auto max-h-[80vmax] relative`}
         style={{ scrollbarColor: '#ffffff9f #ffffff0f' }}
       >
 
