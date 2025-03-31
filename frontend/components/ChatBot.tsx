@@ -60,7 +60,7 @@ export default function ChatBot({ tall = false }: { tall?: boolean }) {
   };
 
   return (
-    <div className={`flex flex-col ${tall ? "h-[80vh]" : "h-[60vh]"} max-h-[90vh]`}>
+    <div className={`flex flex-col ${tall ? "h-[80vh]" : "h-[44vh]"} max-h-[90vh]`}>
       {/* Message Container */}
       <div 
         ref={messageContainerRef} 
@@ -70,14 +70,6 @@ export default function ChatBot({ tall = false }: { tall?: boolean }) {
           <Message key={message.id} text={message.text} sender={message.sender} />
         ))}
       </div>
-
-      {/* 40px Gap with Gradient
-      <div 
-        className="w-full h-[40px] pointer-events-none"
-        style={{
-          background: "linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3))"
-        }}
-      /> */}
 
       {/* Input Section */}
       <div className="w-full flex flex-col items-end -mb-3">
