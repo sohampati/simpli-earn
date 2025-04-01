@@ -15,17 +15,17 @@ interface FullChatProps {
 
 export default function FullChat({ setFullscreen, onMinimizedChange, fullscreen, messages, setMessages }: FullChatProps) {
     return (
-        <div className="fixed px-5 pb-9 xs:pb-2 w-full top-16 h-[calc(100vh-30px)] left-0 z-100">
+        <div className="fixed px-5 pb-9 xs:pb-2 w-full top-16 h-[calc(100vh-30px)] left-0 z-50">
             <div className="flex flex-col w-full h-full relative -mt-5 xs:-mt-12">
                 <div className="grid xs:grid-cols-[1fr_400px_1fr] relative justify-end xs:justify-between">
                     {/* SimpliChat Button */}
-                    <div className="hidden xs:flex justify-start items-start rounded-tl-[30px] rounded-tr-[23px] w-full h-[40px] border-t-[1px] border-white/25 relative"></div>
+                    <div className="hidden xs:flex justify-start items-start rounded-tl-[30px] rounded-tr-[23px] w-full h-[40px] border-t border-white/25 relative"></div>
 
-                    <div className="hidden xs:flex justify-end items-end rounded-b-[23px] w-full h-[40px] border-b-[1px] border-white/25 relative"></div>
+                    <div className="hidden xs:flex justify-end items-end rounded-b-[23px] w-full h-[40px] border-b border-white/25 relative"></div>
                     
                     {/* Close Button */}
                     <button
-                        className="flex mt-3 xs:mt-0 rounded-tr-[30px] rounded-tl-[23px] w-full h-[40px] bordert-t-none xs:border-t-[1px] border-white/25 cursor-pointer relative"
+                        className="flex mt-3 xs:mt-0 rounded-tr-[30px] rounded-tl-[23px] w-full h-[40px] bordert-t-none xs:border-t border-white/25 cursor-pointer relative"
                         onClick={() => {
                             setFullscreen(false); // Exit fullscreen
                             onMinimizedChange(true); // Minimize chat
@@ -39,7 +39,7 @@ export default function FullChat({ setFullscreen, onMinimizedChange, fullscreen,
                 </div>
 
                 <div className="flex w-full h-full">
-                    <div className="w-1/4 -mt-10 border-white/35 border-x-[0.85px] border-b-[0.85px] bg-white/12 rounded-l-[30px] hidden lg:block">
+                    <div className="w-1/4 -mt-10 border-white/25 border-x border-b bg-white/12 rounded-l-[30px] hidden lg:block">
                         <div className="w-full flex justify-between p-5">
                             <FaCompressAlt className="cursor-pointer z-100" size={20} onClick={() => setFullscreen(false)} />
                             <p className="text-lg font-bold -mt-1">SimpliChat</p>
@@ -50,7 +50,7 @@ export default function FullChat({ setFullscreen, onMinimizedChange, fullscreen,
                             <p>chat history</p>
                         </div>
                     </div>
-                    <div className="-mt-10 pt-12 xs:pt-18 pb-8 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b-[0.85px] border-x-[0.85px] border-white/35"><div className="relative h-full"><ChatBot fullscreen={fullscreen} messages={messages} setMessages={setMessages} /></div></div>
+                    <div className="-mt-10 pt-12 xs:pt-18 pb-8 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b border-r border-white/25"><div className="relative h-full"><ChatBot fullscreen={fullscreen} messages={messages} setMessages={setMessages} /></div></div>
                 </div>
             </div>
         </div>
