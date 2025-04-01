@@ -70,13 +70,11 @@ def chat_endpoint(req: ChatRequest):
     global retriever, qa_chain, memory, last_used_id
 
     # Reset memory and chain if ID has changed
-    new_identifier = req.video_url if req.video_url else req.id
-
-    if new_identifier and new_identifier != last_used_id:
+    if req.id and req.id != last_used_id:
         memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
         retriever = None
         qa_chain = None
-        last_used_id = new_identifier
+        last_used_id = req.id
 
     # If retriever not set, initialize it from static ID or video URL
     if req.video_url and not retriever:
@@ -127,19 +125,13 @@ def chat_endpoint(req: ChatRequest):
 
 
 @app.get("/summary")
-def generate_summary(id: str = Query(None), video_url: str = Query(None)):
+def generate_summary(id: str = Query("1")):
     global summary_chain
 
-    if video_url:
-        transcript = get_video_transcript(video_url)
-        if "Error:" in transcript:
-            return {"summary": transcript}
-        transcript_path = save_transcript_in_uploads(video_url, transcript)
-    elif id and id in STATIC_TRANSCRIPTS:
-        transcript_path = STATIC_TRANSCRIPTS[id]
-    else:
-        return {"summary": "❌ No transcript found."}
+    if id not in STATIC_TRANSCRIPTS:
+        return {"summary": "❌ Unknown dashboard ID or missing transcript."}
 
+    transcript_path = STATIC_TRANSCRIPTS[id]
     try:
         with open(transcript_path, "r", encoding="utf-8") as f:
             transcript_text = f.read()
