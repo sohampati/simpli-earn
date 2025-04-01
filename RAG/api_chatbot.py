@@ -9,6 +9,9 @@ from datetime import datetime
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
+from fastapi import Query
 
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -31,6 +34,7 @@ app.add_middleware(
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 retriever = None
 qa_chain = None  # ✅ NEW
+summary_chain = None  # ✅ For generating one-off summaries
 
 # Static transcripts for library
 STATIC_TRANSCRIPTS = {
@@ -117,3 +121,39 @@ def chat_endpoint(req: ChatRequest):
     response = qa_chain.invoke({"question": req.message})
     chat_history.append({"question": req.message, "answer": response["answer"]})
     return {"response": response["answer"]}
+
+
+
+@app.get("/summary")
+def generate_summary(id: str = Query("1")):
+    global summary_chain
+
+    if id not in STATIC_TRANSCRIPTS:
+        return {"summary": "❌ Unknown dashboard ID or missing transcript."}
+
+    transcript_path = STATIC_TRANSCRIPTS[id]
+    try:
+        with open(transcript_path, "r", encoding="utf-8") as f:
+            transcript_text = f.read()
+    except Exception as e:
+        return {"summary": f"❌ Failed to load transcript: {str(e)}"}
+
+    if summary_chain is None:
+        prompt = PromptTemplate(
+            input_variables=["transcript"],
+            template="""
+You are a financial analyst assistant. Read the following earnings call transcript and generate a detailed yet concise summary highlighting the key financial results, executive commentary, and any forward-looking statements.
+
+Transcript:
+{transcript}
+
+Summary:
+"""
+        )
+        summary_chain = LLMChain(
+            llm=ChatOpenAI(model_name="gpt-4o", openai_api_key=os.getenv("OPENAI_API_KEY")),
+            prompt=prompt
+        )
+
+    summary = summary_chain.run(transcript=transcript_text)
+    return {"summary": summary}
