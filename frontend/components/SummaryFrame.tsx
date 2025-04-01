@@ -54,7 +54,7 @@ export default function SummaryFrame({
         </>
       )}
       <div
-        className={`w-full font-montserrat text-white mt-[40px] justify-center items-center bg-white/4 rounded-[30px] border border-white/25 overflow-auto max-h-[80vmax] relative`}
+        className={`w-full font-montserrat text-white mt-[40px] justify-center items-center bg-white/4 rounded-[30px] border border-white/25 overflow-auto max-h-[84vmax] relative`}
         style={{ scrollbarColor: "#ffffff9f #ffffff0f" }}
       >
         <h1 className="flex justify-center items-start pt-8 font-bold text-lg font-montserrat">
