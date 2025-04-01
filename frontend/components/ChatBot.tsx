@@ -21,13 +21,13 @@ export default function ChatBot({ fullscreen, messages, setMessages }: { fullscr
 
   const sendMessage = async () => {
     if (userInput.trim()) {
-      setUserInput("");
       const newMessage: Message = {
         id: messages.length + 1,
         sender: "user",
         text: userInput,
       };
       setMessages((prev) => [...prev, newMessage]);
+      setUserInput("");
   
       try {
         const res = await fetch("http://localhost:8000/chat", {
