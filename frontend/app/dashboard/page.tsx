@@ -54,16 +54,16 @@ export default function Dashboard() {
           <DashboardTab />
         </div>
         {!fullscreen &&
-          <main className="grid grid-cols-1 lg:grid-cols-[62%_1fr] xl:grid-cols-[62%_1fr] gap-[40px] px-[40px] pb-[40px] max-w-[1800px] m-auto">
+          <main className="grid grid-cols-1 lg:grid-cols-[62%_1fr] xl:grid-cols-[62%_1fr] gap-[40px] px-[40px] pb-[40px] max-w-[1536px] m-auto">
             <div className="flex flex-col gap-[40px]">
               <VideoFrame />
-              <div className="w-full grow min-h-[300px]">
+              <div className="w-full grow min-h-[450px]">
                 <ChartsFrame />
               </div>
             </div>
             <div className="flex flex-col gap-[40px] -mt-[40px] sm:max-h-[1100px]">
-              <div className={`${activeDisplay == "full" ? "h-full" : "h-2/5 xl:h-1/2"}`}><SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} /></div>
-              {!fullscreen && !(activeDisplay == "full") && <div className="grow"><ChatFrame
+              <div className="h-[500px] lg:h-full"><SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} /></div>
+              {!fullscreen && !(activeDisplay == "full") && <div className="grow min-h-[450px]"><ChatFrame
                 onMinimizedChange={handleChatMinimized}
                 minimized={chatMinimized}
                 setFullscreen={setFullscreen}
