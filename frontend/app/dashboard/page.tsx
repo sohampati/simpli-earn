@@ -13,6 +13,21 @@ export default function Dashboard() {
   const [chatMinimized, setChatMinimized] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
 
+  const messageArray = [
+    {
+      id: 1,
+      sender: "user",
+      text: "Is now a good time to invest in Tesla?",
+    },
+    {
+      id: 2,
+      sender: "bot",
+      text: "The decision to invest in the stock market depends on various factors, including your financial goals, risk tolerance, and market conditions. Historically, markets tend to rise over the long term, but short-term fluctuations are common. Diversification and a well-thought-out strategy can help manage risk.\n\nIf you're unsure, consulting a financial advisor or conducting thorough research on economic indicators, interest rates, and company performance may be beneficial before making investment decisions.",
+    }
+  ];
+
+  const [messages, setMessages] = useState(messageArray);
+
   // Function to handle chat minimization
   interface ChatMinimizedHandler {
     (isMinimized: boolean): void;
@@ -52,13 +67,16 @@ export default function Dashboard() {
                 onMinimizedChange={handleChatMinimized}
                 minimized={chatMinimized}
                 setFullscreen={setFullscreen}
+                messages={messages}
+                setMessages={setMessages}
+                fullscreen={fullscreen}
               /></div>}
             </div>
           </main>
         }
       </div>
 
-      {fullscreen && <FullChat setFullscreen={setFullscreen} onMinimizedChange={handleChatMinimized} />}
+      {fullscreen && <FullChat fullscreen={fullscreen} setFullscreen={setFullscreen} onMinimizedChange={handleChatMinimized} messages={messages} setMessages={setMessages} />}
     </div>
   );
 }

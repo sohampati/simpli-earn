@@ -5,13 +5,22 @@ import { useEffect, Dispatch, SetStateAction } from "react";
 import ChatBot from "./ChatBot";
 import { FaExpandAlt } from "react-icons/fa";
 
+type Message = {
+    id: number;
+    sender: string;
+    text: string;
+  };
+
 interface ChatFrameProps {
     onMinimizedChange: (minimized: boolean) => void;
     minimized: boolean;
     setFullscreen: Dispatch<SetStateAction<boolean>>;
+    messages: Message[];
+    setMessages: Dispatch<SetStateAction<Message[]>>;
+    fullscreen: boolean;
 }
 
-export default function ChatFrame({ onMinimizedChange, minimized, setFullscreen }: ChatFrameProps) {
+export default function ChatFrame({ onMinimizedChange, minimized, setFullscreen, messages, setMessages, fullscreen }: ChatFrameProps) {
     
     // Remove local minimized state since we're using props now
 
@@ -44,7 +53,7 @@ export default function ChatFrame({ onMinimizedChange, minimized, setFullscreen 
                     <h1 className="font-bold text-lg">SimpliChat</h1>
                     <IoClose size={25} className="cursor-pointer" onClick={handleMinimize} />
                 </div>
-                <ChatBot />
+                <ChatBot fullscreen={fullscreen} messages={messages} setMessages={setMessages}/>
             </div>
         </div>
     );

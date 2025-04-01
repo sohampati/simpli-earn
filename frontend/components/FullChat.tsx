@@ -5,14 +5,23 @@ import { Dispatch, SetStateAction } from "react";
 import ChatBot from "./ChatBot";
 import { FaCompressAlt } from "react-icons/fa";
 
+type Message = {
+    id: number;
+    sender: string;
+    text: string;
+  };
+
 interface FullChatProps {
     setFullscreen: Dispatch<SetStateAction<boolean>>;
     onMinimizedChange: (minimized: boolean) => void;
+    fullscreen: boolean;
+    messages: Message[];
+    setMessages: Dispatch<SetStateAction<Message[]>>;
 }
 
-export default function FullChat({ setFullscreen, onMinimizedChange }: FullChatProps) {
+export default function FullChat({ setFullscreen, onMinimizedChange, fullscreen, messages, setMessages }: FullChatProps) {
     return (
-        <div className="fixed mx-5 top-16 h-[calc(100vh-30px)] left-0 z-100">
+        <div className="fixed px-5 w-full top-16 h-[calc(100vh-30px)] left-0 z-100">
             <div className="flex flex-col w-full h-full relative -mt-12">
                 <div className="grid grid-cols-[1fr_400px_1fr] relative justify-between">
                     {/* SimpliChat Button */}
@@ -53,7 +62,7 @@ export default function FullChat({ setFullscreen, onMinimizedChange }: FullChatP
                             <p>chat history</p>
                         </div>
                     </div>
-                    <div className="-mt-10 pt-18 pb-8 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b-[0.85px] border-x-[0.85px] border-white/35"><div className="relative h-full"><ChatBot /></div></div>
+                    <div className="-mt-10 pt-18 pb-8 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b-[0.85px] border-x-[0.85px] border-white/35"><div className="relative h-full"><ChatBot fullscreen={fullscreen} messages={messages} setMessages={setMessages} /></div></div>
                 </div>
             </div>
         </div>
