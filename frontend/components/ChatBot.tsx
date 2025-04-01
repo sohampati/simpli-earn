@@ -95,7 +95,7 @@ export default function ChatBot({ fullscreen, messages, setMessages }: { fullscr
           onChange={(e) => setUserInput(e.target.value)}
           placeholder="Message RAG Chatbot"
           onKeyDown={handleKeyDown}
-          className="w-full h-[120px] p-3 bg-[#1D1D1D] text-white rounded-[15px] border-[1px] border-white/25 resize-none"
+          className="w-full h-[120px] p-3 bg-white/4 text-white rounded-[15px] border-[1px] border-white/25 resize-none"
         ></textarea>
         <div
           className="-mt-13 mr-3 py-1.5 px-3 bg-white/15 text-white rounded-full border-[1px] border-white/25 cursor-pointer"
