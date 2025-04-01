@@ -62,7 +62,7 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex flex-col gap-[40px] -mt-[40px] sm:max-h-[1100px]">
-              <div className={`h-[500px] ${activeDisplay == "full" ? "lg:h-full" : "lg:h-[calc(100%)] 2xl:h-[587.78px]"}`}><SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} /></div>
+              <div className="h-[500px] lg:h-full"><SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} /></div>
               {!fullscreen && !(activeDisplay == "full") && <div className="grow min-h-[450px]"><ChatFrame
                 onMinimizedChange={handleChatMinimized}
                 minimized={chatMinimized}
