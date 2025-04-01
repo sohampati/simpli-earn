@@ -46,7 +46,7 @@ export default function Dashboard() {
                 <ChartsFrame />
               </div>
             </div>
-            <div className="flex flex-col gap-[40px] -mt-[40px] max-h-[1100px]">
+            <div className="flex flex-col gap-[40px] -mt-[40px] sm:max-h-[1100px]">
               <div className={`${activeDisplay == "full" ? "h-full" : "h-2/5 xl:h-1/2"}`}><SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} /></div>
               {!fullscreen && !(activeDisplay == "full") && <div className="grow"><ChatFrame
                 onMinimizedChange={handleChatMinimized}
