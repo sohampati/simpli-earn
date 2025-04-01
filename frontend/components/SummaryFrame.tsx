@@ -16,6 +16,25 @@ export default function SummaryFrame({
   const [error, setError] = useState("");
   const searchParams = useSearchParams();
 
+  const parseToJSX = (htmlString: string) => {
+    // Split the string using the <b> tags as a delimiter, but keep the <b> tags
+    const parts = htmlString.split(/(<b>.*?<\/b>)/g);
+
+    // Map over the parts and render each as JSX
+    return (
+      <div>
+        {parts.map((part, index) => {
+          if (part.startsWith('<b>') && part.endsWith('</b>')) {
+            // Render the bold text within <b> tags
+            return <b key={index}>{part.replace(/<b>|<\/b>/g, '')}</b>;
+          }
+          // Otherwise, render the regular text
+          return <span key={index}>{part}</span>;
+        })}
+      </div>
+    );
+  };
+
   useEffect(() => {
     const fetchSummary = async () => {
       const id = searchParams.get("id") || "1";
@@ -23,7 +42,7 @@ export default function SummaryFrame({
         const res = await fetch(`http://localhost:8000/summary?id=${id}`);
         const data = await res.json();
         if (data.summary) {
-          setSummary(data.summary);
+          setSummary(data.summary.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'));
         } else {
           setSummary("⚠️ No summary found.");
         }
@@ -78,9 +97,9 @@ export default function SummaryFrame({
                 />
               </span>
             )}
-            <p className="pt-4 px-8 pb-8 -mb-[144px] whitespace-pre-wrap">
-              {error || summary}
-            </p>
+            <div className="pt-4 px-8 pb-8 -mb-[144px] whitespace-pre-wrap">
+              {error || parseToJSX(summary)}
+            </div>
           </div>
         </div>
       </div>
