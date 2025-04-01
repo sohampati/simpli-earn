@@ -16,15 +16,15 @@ export default function FullChat({ setFullscreen, onMinimizedChange }: FullChatP
             <div className="flex flex-col w-full h-full relative -mt-12">
                 <div className="grid grid-cols-[1fr_400px_1fr] relative justify-between">
                     {/* SimpliChat Button */}
-                    <div
-                        className="flex justify-start items-start rounded-tl-[30px] rounded-tr-[23px] w-full h-[40px] border-t-[1px] border-white/25 relative"
-                    >
-                    </div>
+                    <div className="flex justify-start items-start rounded-tl-[30px] rounded-tr-[23px] w-full h-[40px] border-t-[1px] border-white/25 relative"></div>
 
-                    <div
-                        className="flex justify-end items-end rounded-b-[23px] w-full h-[40px] border-b-[1px] border-white/25 relative"
-                    >
-                    </div>
+                    {/* Pseudo-Element Overlay to Seamlessly Blend the Borders */}
+                    <div className="absolute top-1/2 left-[calc(50%-200px)] w-[0.5px] h-[18px] bg-white/12 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transform -rotate-20"></div>
+
+                    <div className="flex justify-end items-end rounded-b-[23px] w-full h-[40px] border-b-[1px] border-white/25 relative"></div>
+                    
+                    {/* Pseudo-Element Overlay to Seamlessly Blend the Borders */}
+                    <div className="absolute top-1/2 left-[calc(50%+200px)] w-[0.5px] h-[18px] bg-white/12 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transform rotate-20"></div>
 
                     {/* Close Button */}
                     <button
