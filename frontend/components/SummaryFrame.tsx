@@ -83,7 +83,7 @@ export default function SummaryFrame({
           <div>
             {!halfHeight && (
               <span
-                className="float-right flex mt-[100px] items-end ml-4 opacity-0"
+                className="float-right flex mt-[100px] mb-5 items-end ml-4 opacity-0"
                 style={{
                   shapeOutside: "inset(calc(100% - 144px) 0 0)",
                   height: "100%",
