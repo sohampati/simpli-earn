@@ -32,12 +32,12 @@ memory = ConversationBufferMemory(memory_key="chat_history", return_messages=Tru
 retriever = None
 qa_chain = None  # ✅ NEW
 
-# Optional: Static transcript fallback (e.g. Tesla = id 2)
+# Static transcripts for library
 STATIC_TRANSCRIPTS = {
     "1": "transcripts/apple_seeking_alpha.txt",
     "2": "transcripts/cvs_seeking_alpha.txt",
     "3": "transcripts/alphabet_seeking_alpha.txt",
-    "4": "transcripts/meta_seeking_alpha.txt",
+    "4": "transcripts/shell_seeking_alpha.txt",
     "5": "transcripts/tesla_seeking_alpha.txt",
     "6": "transcripts/walmart_seeking_alpha.txt"
 }
