@@ -94,7 +94,9 @@ def chat_endpoint(req: ChatRequest):
     if qa_chain is None:
         prompt_template = ChatPromptTemplate.from_template(
             """
-            You are an assistant providing insights from the uploaded document.
+            You are a financial assistant providing insights from this document you currently have.
+            You are to give objective answers at all times.
+            This document is the earnings call of a given company, and it will have typical information such as the name of the company, the participants at the start of the document.
             Use the provided context and chat history to answer the user's questions.
             If the question is irrelevant to the document, politely state so.
 
