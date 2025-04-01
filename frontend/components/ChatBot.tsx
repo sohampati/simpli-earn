@@ -115,6 +115,7 @@ export default function ChatBot({
             onChange={(e) => setUserInput(e.target.value)}
             placeholder="Message RAG Chatbot"
             onKeyDown={handleKeyDown}
+            style={{ scrollbarColor: "#ffffff9f #ffffff0f" }}
             className="w-full h-[120px] p-3 bg-white/4 text-white rounded-[15px] border-[1px] border-white/25 resize-none"
           ></textarea>
           <div
