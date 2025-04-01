@@ -13,6 +13,8 @@
   --font-montserrat: var(--font-montserrat), sans-serif;
   --color-green: #81D18D;
   --linear-green: linear-gradient(#81D18D, #426B48);
+
+  --breakpoint-xs: 560px;
 }
 
 @media (prefers-color-scheme: dark) {

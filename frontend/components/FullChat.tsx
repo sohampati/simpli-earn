@@ -2,14 +2,8 @@
 
 import { IoClose } from "react-icons/io5";
 import { Dispatch, SetStateAction } from "react";
-import ChatBot from "./ChatBot";
+import ChatBot, { Message } from "./ChatBot";
 import { FaCompressAlt } from "react-icons/fa";
-
-type Message = {
-    id: number;
-    sender: string;
-    text: string;
-  };
 
 interface FullChatProps {
     setFullscreen: Dispatch<SetStateAction<boolean>>;
@@ -21,23 +15,17 @@ interface FullChatProps {
 
 export default function FullChat({ setFullscreen, onMinimizedChange, fullscreen, messages, setMessages }: FullChatProps) {
     return (
-        <div className="fixed px-5 w-full top-16 h-[calc(100vh-30px)] left-0 z-100">
-            <div className="flex flex-col w-full h-full relative -mt-12">
-                <div className="grid grid-cols-[1fr_400px_1fr] relative justify-between">
+        <div className="fixed px-5 pb-9 xs:pb-2 w-full top-16 h-[calc(100vh-30px)] left-0 z-100">
+            <div className="flex flex-col w-full h-full relative -mt-5 xs:-mt-12">
+                <div className="grid xs:grid-cols-[1fr_400px_1fr] relative justify-end xs:justify-between">
                     {/* SimpliChat Button */}
-                    <div className="flex justify-start items-start rounded-tl-[30px] rounded-tr-[23px] w-full h-[40px] border-t-[1px] border-white/25 relative"></div>
+                    <div className="hidden xs:flex justify-start items-start rounded-tl-[30px] rounded-tr-[23px] w-full h-[40px] border-t-[1px] border-white/25 relative"></div>
 
-                    {/* Pseudo-Element Overlay to Seamlessly Blend the Borders */}
-                    <div className="absolute top-1/2 left-[calc(50%-200px)] w-[0.5px] h-[18px] bg-white/12 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transform -rotate-20"></div>
-
-                    <div className="flex justify-end items-end rounded-b-[23px] w-full h-[40px] border-b-[1px] border-white/25 relative"></div>
+                    <div className="hidden xs:flex justify-end items-end rounded-b-[23px] w-full h-[40px] border-b-[1px] border-white/25 relative"></div>
                     
-                    {/* Pseudo-Element Overlay to Seamlessly Blend the Borders */}
-                    <div className="absolute top-1/2 left-[calc(50%+200px)] w-[0.5px] h-[18px] bg-white/12 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transform rotate-20"></div>
-
                     {/* Close Button */}
                     <button
-                        className="flex justify-start items-start rounded-tr-[30px] rounded-tl-[23px] w-full h-[40px] border-t-[1px] border-white/25 cursor-pointer relative"
+                        className="flex mt-3 xs:mt-0 rounded-tr-[30px] rounded-tl-[23px] w-full h-[40px] bordert-t-none xs:border-t-[1px] border-white/25 cursor-pointer relative"
                         onClick={() => {
                             setFullscreen(false); // Exit fullscreen
                             onMinimizedChange(true); // Minimize chat
@@ -62,7 +50,7 @@ export default function FullChat({ setFullscreen, onMinimizedChange, fullscreen,
                             <p>chat history</p>
                         </div>
                     </div>
-                    <div className="-mt-10 pt-18 pb-8 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b-[0.85px] border-x-[0.85px] border-white/35"><div className="relative h-full"><ChatBot fullscreen={fullscreen} messages={messages} setMessages={setMessages} /></div></div>
+                    <div className="-mt-10 pt-12 xs:pt-18 pb-8 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b-[0.85px] border-x-[0.85px] border-white/35"><div className="relative h-full"><ChatBot fullscreen={fullscreen} messages={messages} setMessages={setMessages} /></div></div>
                 </div>
             </div>
         </div>

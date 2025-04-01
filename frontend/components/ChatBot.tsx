@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import Message from "./Message";
 import { useSearchParams } from "next/navigation";
 
-type Message = {
+export type Message = {
   id: number;
   sender: string;
   text: string;

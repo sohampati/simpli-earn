@@ -2,14 +2,8 @@
 
 import { IoClose } from "react-icons/io5";
 import { useEffect, Dispatch, SetStateAction } from "react";
-import ChatBot from "./ChatBot";
+import ChatBot, { Message } from "./ChatBot";
 import { FaExpandAlt } from "react-icons/fa";
-
-type Message = {
-    id: number;
-    sender: string;
-    text: string;
-  };
 
 interface ChatFrameProps {
     onMinimizedChange: (minimized: boolean) => void;
