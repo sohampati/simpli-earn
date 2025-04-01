@@ -6,46 +6,57 @@ import ChatBot from "./ChatBot";
 import { FaExpandAlt } from "react-icons/fa";
 
 interface ChatFrameProps {
-    onMinimizedChange: (minimized: boolean) => void;
-    minimized: boolean;
-    setFullscreen: Dispatch<SetStateAction<boolean>>;
+  onMinimizedChange: (minimized: boolean) => void;
+  minimized: boolean;
+  setFullscreen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function ChatFrame({ onMinimizedChange, minimized, setFullscreen }: ChatFrameProps) {
-    
-    // Remove local minimized state since we're using props now
+export default function ChatFrame({
+  onMinimizedChange,
+  minimized,
+  setFullscreen,
+}: ChatFrameProps) {
+  // Remove local minimized state since we're using props now
 
-    // Sync local UI with parent's minimized state
-    useEffect(() => {
-        if (minimized) {
-            setFullscreen(false);
-        }
-    }, [minimized]);
-
-    const handleMinimize = () => {
-        onMinimizedChange(true); // Notify parent
-        onMinimizedChange(false); // Notify parent
-    };
-
-    const handleExpand = () => {
-        onMinimizedChange(false); // Notify parent
-        setFullscreen(true);
-    };
-
+  // Sync local UI with parent's minimized state
+  useEffect(() => {
     if (minimized) {
-        return null; // Or render a minimized chat button
+      setFullscreen(false);
     }
+  }, [minimized]);
 
-    return (
-        <div className="bg-white/4 text-white rounded-[30px] w-full h-full border-[1px] border-white/25 p-5">
-            <div className="relative w-full h-full">
-                <div className="flex justify-between">
-                    <FaExpandAlt className="cursor-pointer" size={20} onClick={handleExpand} />
-                    <h1 className="font-bold text-lg">SimpliChat</h1>
-                    <IoClose size={25} className="cursor-pointer" onClick={handleMinimize} />
-                </div>
-                <ChatBot />
-            </div>
+  const handleMinimize = () => {
+    onMinimizedChange(true); // Notify parent
+    onMinimizedChange(false); // Notify parent
+  };
+
+  const handleExpand = () => {
+    onMinimizedChange(false); // Notify parent
+    setFullscreen(true);
+  };
+
+  if (minimized) {
+    return null; // Or render a minimized chat button
+  }
+
+  return (
+    <div className="bg-white/4 text-white rounded-[30px] w-full h-full border-[1px] border-white/25 p-5">
+      <div className="relative w-full h-full">
+        <div className="flex justify-between">
+          <FaExpandAlt
+            className="cursor-pointer"
+            size={20}
+            onClick={handleExpand}
+          />
+          <h1 className="font-bold text-lg">SimpliChat</h1>
+          <IoClose
+            size={25}
+            className="cursor-pointer"
+            onClick={handleMinimize}
+          />
         </div>
-    );
+        <ChatBot />
+      </div>
+    </div>
+  );
 }

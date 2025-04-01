@@ -30,7 +30,7 @@ export default function Dashboard() {
     <div
       style={{
         background:
-          'radial-gradient(50% 50% at 50% 50%, rgba(129, 209, 141, 0.1) 0%, rgba(217, 217, 217, 0) 100%)',
+          "radial-gradient(50% 50% at 50% 50%, rgba(129, 209, 141, 0.1) 0%, rgba(217, 217, 217, 0) 100%)",
       }}
       className="font-[family-name:var(--font-geist-sans)] w-full min-h-screen relative"
     >
@@ -64,27 +64,36 @@ export default function Dashboard() {
           <div className="flex justify-center">
             <DashboardTab />
           </div>
-          {!fullscreen && <><main className="grid grid-cols-21 grid-rows-2 gap-[40px] row-end-auto">
-            <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 max-h-134">
-              <VideoFrame />
-            </div>
-            <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-1 row-start-1 max-h-[575px]">
-              <SummaryFrame halfHeight={activeDisplay !== "full"} />
-            </div>
-            <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-124 pb-[40px]">
-              <ChartsFrame />
-            </div>
-            <div className="flex justify-start items-start mr-[40px] py-[40px] col-start-14 col-span-8 row-span-1 row-start-2 max-h-134">
-              <ChatFrame 
-                onMinimizedChange={handleChatMinimized}
-                minimized={chatMinimized}
-                setFullscreen={setFullscreen}
-              />
-            </div>
-          </main></>}
+          {!fullscreen && (
+            <>
+              <main className="grid grid-cols-21 grid-rows-2 gap-[40px] row-end-auto">
+                <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 max-h-134">
+                  <VideoFrame />
+                </div>
+                <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-1 row-start-1 max-h-[575px]">
+                  <SummaryFrame halfHeight={activeDisplay !== "full"} />
+                </div>
+                <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-124 pb-[40px]">
+                  <ChartsFrame />
+                </div>
+                <div className="flex justify-start items-start mr-[40px] py-[40px] col-start-14 col-span-8 row-span-1 row-start-2 max-h-134">
+                  <ChatFrame
+                    onMinimizedChange={handleChatMinimized}
+                    minimized={chatMinimized}
+                    setFullscreen={setFullscreen}
+                  />
+                </div>
+              </main>
+            </>
+          )}
         </div>
       )}
-      {fullscreen && <FullChat setFullscreen={setFullscreen} />}
+      {fullscreen && (
+        <FullChat
+          setFullscreen={setFullscreen}
+          onMinimizedChange={handleChatMinimized}
+        />
+      )}
     </div>
   );
 }
