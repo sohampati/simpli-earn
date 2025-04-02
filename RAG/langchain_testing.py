@@ -78,17 +78,19 @@ def get_chat_response(user_input, retriever, memory):
     """Generates responses using conversational retrieval with memory."""
     
     prompt_template = ChatPromptTemplate.from_template(
-        """
-        You are an assistant providing insights from the uploaded document.
-        Use the provided context and chat history to answer the user's questions.
-        If the question is irrelevant to the document, politely state so.
+            """
+            You are a financial assistant providing insights from this document you currently have.
+            You are to give objective answers at all times.
+            This document is the earnings call of a given company, and it will have typical information such as the name of the company, the participants at the start of the document.
+            Use the provided context and chat history to answer the user's questions.
+            If the question is irrelevant to the document, politely state so.
 
-        Context: {context}
-        Chat History: {chat_history}
-        User: {question}
-        Assistant:
-        """
-    )
+            Context: {context}
+            Chat History: {chat_history}
+            User: {question}
+            Assistant:
+            """
+        )
 
     qa_chain = ConversationalRetrievalChain.from_llm(
         llm=ChatOpenAI(model_name="gpt-4o", openai_api_key=OPENAI_API_KEY),

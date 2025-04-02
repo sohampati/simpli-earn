@@ -4,7 +4,6 @@ import DashboardTab from "@/components/DashboardTab";
 import VideoFrame from "@/components/VideoFrame";
 import SummaryFrame from "@/components/SummaryFrame";
 import ChartsFrame from "@/components/ChartsFrame";
-import ChatIcon from "@/components/ChatIcon";
 import ChatFrame from "@/components/ChatFrame";
 import { useState } from "react";
 import FullChat from "@/components/FullChat";
@@ -13,6 +12,21 @@ export default function Dashboard() {
   const [activeDisplay, setActiveDisplay] = useState("full");
   const [chatMinimized, setChatMinimized] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+
+  const messageArray = [
+    {
+      id: 1,
+      sender: "user",
+      text: "Is now a good time to invest in Tesla?",
+    },
+    {
+      id: 2,
+      sender: "bot",
+      text: "The decision to invest in the stock market depends on various factors, including your financial goals, risk tolerance, and market conditions. Historically, markets tend to rise over the long term, but short-term fluctuations are common. Diversification and a well-thought-out strategy can help manage risk.\n\nIf you're unsure, consulting a financial advisor or conducting thorough research on economic indicators, interest rates, and company performance may be beneficial before making investment decisions.",
+    }
+  ];
+
+  const [messages, setMessages] = useState(messageArray);
 
   // Function to handle chat minimization
   interface ChatMinimizedHandler {
@@ -34,66 +48,35 @@ export default function Dashboard() {
       }}
       className="font-[family-name:var(--font-geist-sans)] w-full min-h-screen relative"
     >
-      {activeDisplay === "full" ? (
-        <div className="w-full h-full">
-          <div className="flex justify-center">
-            <DashboardTab />
-          </div>
-          <main className="grid grid-cols-21 grid-rows-2 gap-[40px]">
-            <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1">
+
+      <div className="w-full h-full">
+        <div className="flex justify-center">
+          <DashboardTab />
+        </div>
+        {!fullscreen &&
+          <main className="grid grid-cols-1 lg:grid-cols-[62%_1fr] xl:grid-cols-[62%_1fr] gap-[40px] px-[40px] pb-[40px] max-w-[1536px] m-auto">
+            <div className="flex flex-col gap-[40px]">
               <VideoFrame />
+              <div className="w-full grow min-h-[450px]">
+                <ChartsFrame />
+              </div>
             </div>
-            <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-2 row-start-1 max-h-[calc(100%-40px)]">
-              <SummaryFrame halfHeight={activeDisplay !== "full"} />
-            </div>
-            <div className="flex justify-start items-start ml-[40px] pb-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-[calc(100%-40px)]">
-              <ChartsFrame />
+            <div className="flex flex-col gap-[40px] -mt-[40px] sm:max-h-[1100px]">
+              <div className="h-[500px] lg:h-full"><SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} /></div>
+              {!fullscreen && !(activeDisplay == "full") && <div className="grow min-h-[450px]"><ChatFrame
+                onMinimizedChange={handleChatMinimized}
+                minimized={chatMinimized}
+                setFullscreen={setFullscreen}
+                messages={messages}
+                setMessages={setMessages}
+                fullscreen={fullscreen}
+              /></div>}
             </div>
           </main>
-          <div className="absolute bottom-[40px] right-[40px]">
-            <button
-              onClick={() => setActiveDisplay("half")}
-              disabled={chatMinimized} // Optional: disable if chat is minimized
-            >
-              <ChatIcon />
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="w-full h-full">
-          <div className="flex justify-center">
-            <DashboardTab />
-          </div>
-          {!fullscreen && (
-            <>
-              <main className="grid grid-cols-21 grid-rows-2 gap-[40px] row-end-auto">
-                <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 max-h-134">
-                  <VideoFrame />
-                </div>
-                <div className="flex justify-start items-start mr-[40px] -mt-[40px] col-start-14 col-span-8 row-span-1 row-start-1 max-h-[575px]">
-                  <SummaryFrame halfHeight={activeDisplay !== "full"} />
-                </div>
-                <div className="flex justify-start items-start ml-[40px] col-start-1 col-span-13 row-span-1 row-start-2 max-h-124 pb-[40px]">
-                  <ChartsFrame />
-                </div>
-                <div className="flex justify-start items-start mr-[40px] py-[40px] col-start-14 col-span-8 row-span-1 row-start-2 max-h-134">
-                  <ChatFrame
-                    onMinimizedChange={handleChatMinimized}
-                    minimized={chatMinimized}
-                    setFullscreen={setFullscreen}
-                  />
-                </div>
-              </main>
-            </>
-          )}
-        </div>
-      )}
-      {fullscreen && (
-        <FullChat
-          setFullscreen={setFullscreen}
-          onMinimizedChange={handleChatMinimized}
-        />
-      )}
+        }
+      </div>
+
+      {fullscreen && <FullChat fullscreen={fullscreen} setFullscreen={setFullscreen} onMinimizedChange={handleChatMinimized} messages={messages} setMessages={setMessages} />}
     </div>
   );
 }
