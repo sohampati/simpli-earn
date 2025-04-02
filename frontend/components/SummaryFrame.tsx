@@ -24,9 +24,9 @@ export default function SummaryFrame({
     return (
       <div>
         {parts.map((part, index) => {
-          if (part.startsWith('<b>') && part.endsWith('</b>')) {
+          if (part.startsWith("<b>") && part.endsWith("</b>")) {
             // Render the bold text within <b> tags
-            return <b key={index}>{part.replace(/<b>|<\/b>/g, '')}</b>;
+            return <b key={index}>{part.replace(/<b>|<\/b>/g, "")}</b>;
           }
           // Otherwise, render the regular text
           return <span key={index}>{part}</span>;
@@ -37,12 +37,24 @@ export default function SummaryFrame({
 
   useEffect(() => {
     const fetchSummary = async () => {
-      const id = searchParams.get("id") || "1";
+      const id = searchParams.get("id");
+      const videoUrl = searchParams.get("video_url");
+
       try {
-        const res = await fetch(`http://localhost:8000/summary?id=${id}`);
+        let res;
+        if (videoUrl) {
+          res = await fetch("http://localhost:8000/summary", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ video_url: videoUrl }),
+          });
+        } else {
+          res = await fetch(`http://localhost:8000/summary?id=${id || "1"}`);
+        }
+
         const data = await res.json();
         if (data.summary) {
-          setSummary(data.summary.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'));
+          setSummary(data.summary.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>"));
         } else {
           setSummary("⚠️ No summary found.");
         }

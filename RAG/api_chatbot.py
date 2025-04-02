@@ -11,7 +11,8 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from fastapi import Query
+from fastapi import Query, Body
+from typing import Optional
 
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -51,8 +52,8 @@ chat_history = []
 
 class ChatRequest(BaseModel):
     message: str
-    id: str = None  # Optional dashboard id (e.g. 2 for Tesla)
-    video_url: str = None  # Optional for dynamic YouTube support
+    id: Optional[str] = None
+    video_url: Optional[str] = None
 
 def save_transcript_in_uploads(video_url, transcript_text):
     """Save transcript to the uploads folder with a timestamped filename."""
@@ -138,6 +139,46 @@ def generate_summary(id: str = Query("1")):
     except Exception as e:
         return {"summary": f"❌ Failed to load transcript: {str(e)}"}
 
+    if summary_chain is None:
+        prompt = PromptTemplate(
+            input_variables=["transcript"],
+            template="""
+You are a financial analyst assistant. Read the following earnings call transcript and generate a detailed yet concise summary highlighting the key financial results, executive commentary, and any forward-looking statements.
+
+Transcript:
+{transcript}
+
+Summary:
+"""
+        )
+        summary_chain = LLMChain(
+            llm=ChatOpenAI(model_name="gpt-4o", openai_api_key=os.getenv("OPENAI_API_KEY")),
+            prompt=prompt
+        )
+
+    summary = summary_chain.run(transcript=transcript_text)
+    return {"summary": summary}
+
+
+@app.post("/summary")
+def generate_summary_from_youtube(data: dict = Body(...)):
+    video_url = data.get("video_url")
+    if not video_url:
+        return {"summary": "❌ No video URL provided."}
+
+    transcript = get_video_transcript(video_url)
+    if "Error:" in transcript:
+        return {"summary": transcript}
+
+    transcript_path = save_transcript_in_uploads(video_url, transcript)
+
+    try:
+        with open(transcript_path, "r", encoding="utf-8") as f:
+            transcript_text = f.read()
+    except Exception as e:
+        return {"summary": f"❌ Failed to read transcript: {str(e)}"}
+
+    global summary_chain
     if summary_chain is None:
         prompt = PromptTemplate(
             input_variables=["transcript"],

@@ -23,7 +23,7 @@ export default function Dashboard() {
       id: 2,
       sender: "bot",
       text: "The decision to invest in the stock market depends on various factors, including your financial goals, risk tolerance, and market conditions. Historically, markets tend to rise over the long term, but short-term fluctuations are common. Diversification and a well-thought-out strategy can help manage risk.\n\nIf you're unsure, consulting a financial advisor or conducting thorough research on economic indicators, interest rates, and company performance may be beneficial before making investment decisions.",
-    }
+    },
   ];
 
   const [messages, setMessages] = useState(messageArray);
@@ -48,12 +48,11 @@ export default function Dashboard() {
       }}
       className="font-[family-name:var(--font-geist-sans)] w-full min-h-[calc(100vh-57px)] relative"
     >
-
       <div className="w-full h-full">
         <div className="flex justify-center">
           <DashboardTab />
         </div>
-        {!fullscreen &&
+        {!fullscreen && (
           <main className="grid grid-cols-1 lg:grid-cols-[62%_1fr] xl:grid-cols-[62%_1fr] gap-[40px] px-[40px] pb-[30px] max-w-[1536px] m-auto">
             <div className="flex flex-col gap-[40px]">
               <VideoFrame />
@@ -62,21 +61,38 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex flex-col gap-[40px] -mt-[40px] sm:max-h-[1100px]">
-              <div className="h-[500px] lg:h-full"><SummaryFrame setActiveDisplay={setActiveDisplay} halfHeight={activeDisplay !== "full"} /></div>
-              {!fullscreen && !(activeDisplay == "full") && <div className="grow min-h-[450px]"><ChatFrame
-                onMinimizedChange={handleChatMinimized}
-                minimized={chatMinimized}
-                setFullscreen={setFullscreen}
-                messages={messages}
-                setMessages={setMessages}
-                fullscreen={fullscreen}
-              /></div>}
+              <div className="h-[500px] lg:h-full">
+                <SummaryFrame
+                  setActiveDisplay={setActiveDisplay}
+                  halfHeight={activeDisplay !== "full"}
+                />
+              </div>
+              {!fullscreen && !(activeDisplay == "full") && (
+                <div className="grow min-h-[450px]">
+                  <ChatFrame
+                    onMinimizedChange={handleChatMinimized}
+                    minimized={chatMinimized}
+                    setFullscreen={setFullscreen}
+                    messages={messages}
+                    setMessages={setMessages}
+                    fullscreen={fullscreen}
+                  />
+                </div>
+              )}
             </div>
           </main>
-        }
+        )}
       </div>
 
-      {fullscreen && <FullChat fullscreen={fullscreen} setFullscreen={setFullscreen} onMinimizedChange={handleChatMinimized} messages={messages} setMessages={setMessages} />}
+      {fullscreen && (
+        <FullChat
+          fullscreen={fullscreen}
+          setFullscreen={setFullscreen}
+          onMinimizedChange={handleChatMinimized}
+          messages={messages}
+          setMessages={setMessages}
+        />
+      )}
     </div>
   );
 }
