@@ -6,7 +6,7 @@ import mockCalls from "@/public/data/mock-calls.json";
 
 export default function Home() {
   return (
-    <div className="bg-[url(/bg.svg)] bg-cover justify-items-center pt-35 md:pt-40 pb-15 md:pb-20 px-8 md:px-12 gap-16 font-[family-name:var(--font-montserrat)]">
+    <div className="-mb-15 bg-[url(/bg.svg)] bg-cover justify-items-center pt-35 md:pt-40 pb-25 md:pb-30 px-8 md:px-12 gap-16 font-[family-name:var(--font-montserrat)]">
       <main className="text-center flex flex-col gap-8 row-start-2 items-center max-w-[1100px]">
         <div className="flex flex-col items-center w-full">
           <hr className="w-full h-1 border-none bg-gradient-to-r from-[rgba(129,209,141,0)] via-[rgba(129,209,141,0.15)] to-[rgba(129,209,141,0)]" />

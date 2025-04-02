@@ -23,9 +23,9 @@ export default function ScrollToTop() {
       onClick={scrollToTop}
       aria-label="Scroll to top"
       className={`
-        fixed z-50 bottom-16 left-1/2 transform -translate-x-1/2
-        bg-[#7ED957] hover:bg-[#6bc14c] text-black
-        p-3 rounded-full shadow-md transition-all duration-300
+        fixed z-50 bottom-5 left-1/2 transform -translate-x-1/2
+        bg-green hover:bg-[#6db478] text-black
+        p-2 rounded-full shadow-md transition-all duration-300 cursor-pointer
         ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}
       `}
     >
@@ -35,7 +35,7 @@ export default function ScrollToTop() {
         viewBox="0 0 24 24"
         strokeWidth={2}
         stroke="currentColor"
-        className="w-5 h-5"
+        className="w-6 h-6"
       >
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
       </svg>

@@ -15,8 +15,8 @@ interface FullChatProps {
 
 export default function FullChat({ setFullscreen, onMinimizedChange, fullscreen, messages, setMessages }: FullChatProps) {
     return (
-        <div className="fixed px-5 pb-9 xs:pb-2 w-full top-16 h-[calc(100vh-30px)] left-0 z-50">
-            <div className="flex flex-col w-full h-full relative -mt-5 xs:-mt-12">
+        <div className="xs:-mt-4 px-5 pb-5 w-full h-[calc(100vh-82px)] z-50">
+            <div className="flex flex-col w-full h-full relative">
                 <div className="grid xs:grid-cols-[1fr_400px_1fr] relative justify-end xs:justify-between">
                     {/* SimpliChat Button */}
                     <div className="hidden xs:flex justify-start items-start rounded-tl-[30px] rounded-tr-[23px] w-full h-[40px] border-t border-white/25 relative"></div>
@@ -50,7 +50,7 @@ export default function FullChat({ setFullscreen, onMinimizedChange, fullscreen,
                             <p>chat history</p>
                         </div>
                     </div>
-                    <div className="-mt-10 pt-12 xs:pt-18 pb-8 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b border-r border-white/25"><div className="relative h-full"><ChatBot fullscreen={fullscreen} messages={messages} setMessages={setMessages} /></div></div>
+                    <div className="-mt-10 pt-12 xs:pt-18 pb-8 px-8 w-full lg:w-3/4 rounded-r-[30px] rounded-l-[30px] lg:rounded-l-none border-b border-t xs:border-t-0 border-r border-white/25"><div className="relative h-full"><ChatBot fullscreen={fullscreen} messages={messages} setMessages={setMessages} /></div></div>
                 </div>
             </div>
         </div>

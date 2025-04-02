@@ -46,7 +46,7 @@ export default function Dashboard() {
         background:
           "radial-gradient(50% 50% at 50% 50%, rgba(129, 209, 141, 0.1) 0%, rgba(217, 217, 217, 0) 100%)",
       }}
-      className="font-[family-name:var(--font-geist-sans)] w-full min-h-screen relative"
+      className="font-[family-name:var(--font-geist-sans)] w-full min-h-[calc(100vh-57px)] relative"
     >
 
       <div className="w-full h-full">
@@ -54,7 +54,7 @@ export default function Dashboard() {
           <DashboardTab />
         </div>
         {!fullscreen &&
-          <main className="grid grid-cols-1 lg:grid-cols-[62%_1fr] xl:grid-cols-[62%_1fr] gap-[40px] px-[40px] pb-[40px] max-w-[1536px] m-auto">
+          <main className="grid grid-cols-1 lg:grid-cols-[62%_1fr] xl:grid-cols-[62%_1fr] gap-[40px] px-[40px] pb-[30px] max-w-[1536px] m-auto">
             <div className="flex flex-col gap-[40px]">
               <VideoFrame />
               <div className="w-full grow min-h-[450px]">
