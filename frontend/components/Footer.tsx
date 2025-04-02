@@ -1,12 +1,12 @@
 export default function Footer() {
     return (
-      <footer className="w-full text-gray-400 py-4 border-t border-[#4f895f40]">
+      <footer className="w-full text-[#e6f0e8b7] py-4 border-t border-[#4f895f40]">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm">&copy; {new Date().getFullYear()} SimpliEarn. All rights reserved.</p>
           <div className="flex items-center space-x-4 mt-2 md:mt-0">
-            <a href="/about" className="hover:text-white">About Us</a>
-            <a href="/faq" className="hover:text-white">FAQ&rsquo;s</a>
-            <a href="/contact" className="hover:text-white">Contact Us</a>
+            <a href="/about" className="transition-all hover:text-white">About Us</a>
+            <a href="/faq" className="transition-all hover:text-white">FAQ&rsquo;s</a>
+            <a href="/contact" className="transition-all hover:text-white">Contact Us</a>
             <a
               href="mailto:simpliearnbdbi@gmail.com"
               className="hover:text-white"
