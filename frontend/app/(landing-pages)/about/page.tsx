@@ -1,6 +1,12 @@
-import NavBar from "@/app/components/navbar";
-import Head from 'next/head';
 import styles from './about.module.css';
+import Image from "next/image";
+import { Metadata } from "next";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "About Us | SimpliEarn",
+};
 
 const teamMembers = [
   {
@@ -48,12 +54,6 @@ const teamMembers = [
 export default function AboutUs() {
   return (
     <div className={styles.pageContainer}>
-      <Head> {/* Might get rid of montserrat section since it's in global css? */}
-        <title>About Us</title>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet" />
-      </Head>
-      
-      <NavBar />
       
       <main className={styles.mainContent}>
         {/* Hero Section */}
@@ -70,9 +70,11 @@ export default function AboutUs() {
               <div key={index} className={styles.teamCard}>
                 {/* Profile image is currently a square. Might change to circle if preferred */}
                 <div className={styles.profileImage}>
-                  <img 
+                  <Image 
                     src={member.image} 
                     alt={member.name} 
+                    width={150}
+                    height={150}
                   />
                 </div>
                 
@@ -83,14 +85,14 @@ export default function AboutUs() {
                 {/* Social Icons - idk what images to use so there are none rn*/}
                 <div className={styles.socialIcons}>
                   {member.socials.linkedin && (
-                    <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer">
-                      <img src="/icons/linkedin.svg" alt="LinkedIn" />
-                    </a>
+                    <Link href={member.socials.linkedin} target="_blank" rel="noopener noreferrer">
+                      <FaLinkedin />
+                    </Link>
                   )}
                   {member.socials.github && (
-                    <a href={member.socials.github} target="_blank" rel="noopener noreferrer">
-                      <img src="/icons/github.svg" alt="GitHub" />
-                    </a>
+                    <Link href={member.socials.github} target="_blank" rel="noopener noreferrer">
+                      <FaGithub />
+                    </Link>
                   )}
                 </div>
               </div>
