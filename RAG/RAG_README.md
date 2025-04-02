@@ -1,4 +1,22 @@
-# README for the RAG Subteam
+# README for the RAG API
+
+# Update: April 2, 2025 by Neil Samant
+
+The RAG code has now been turned into an API, and it needs to be run with the frontend (most typically through a second command prompt/terminal).
+
+You still need to install the libraries in requirements.txt as given below, and get the env file with the OpenAI API key. Those instructions are still the same and can be found below.
+
+However - you will also need to pip install `fastapi` and `uvicorn` as those are required to run the API.
+
+Once this is done - open a new terminal/command prompt, navigate to the RAG folder, and type the following:
+
+`uvicorn api_chatbot:app --reload` - assuming you have the `api_chatbot.py` file (which you should if you cloned the latest version of this repository).
+
+If you get some installation/library errors, you probably forgot to install something, but if you keep getting them then please contact me (Neil).
+
+You can still run the streamlit version if you just want to test the backend! Those instructions are below and (should) still work.
+
+# Old Code (Feb-March 2025) - but the requirements.txt and env file instructions are still relevant.
 
 This is the code I (Neil) have so far and was demoed at the subteam meeting on Feb 26, 2025.
 
