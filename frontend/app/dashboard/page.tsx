@@ -5,13 +5,47 @@ import VideoFrame from "@/components/VideoFrame";
 import SummaryFrame from "@/components/SummaryFrame";
 import ChartsFrame from "@/components/ChartsFrame";
 import ChatFrame from "@/components/ChatFrame";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FullChat from "@/components/FullChat";
 import { sentimentData } from "../sentiment-data/tesla";
+import { useSearchParams } from "next/navigation";
 
 export default function Dashboard() {
   // Summary functionality
+  const searchParams = useSearchParams();
   const [summary, setSummary] = useState("Loading summary...");
+  
+    useEffect(() => {
+      const fetchSummary = async () => {
+        const id = searchParams.get("id");
+        const videoUrl = searchParams.get("video_url");
+  
+        try {
+          let res;
+          if (videoUrl) {
+            res = await fetch("http://localhost:8000/summary", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ video_url: videoUrl }),
+            });
+          } else {
+            res = await fetch(`http://localhost:8000/summary?id=${id || "1"}`);
+          }
+  
+          const data = await res.json();
+          if (data.summary) {
+            setSummary(data.summary.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>"));
+          } else {
+            setSummary("⚠️ No summary found.");
+          }
+        } catch (err) {
+          console.error("Error fetching summary:", err);
+          setSummary("❌ Failed to load summary.");
+        }
+      };
+  
+      fetchSummary();
+    }, [searchParams]);
 
   // Bot screen size
   const [activeDisplay, setActiveDisplay] = useState("full");
@@ -74,7 +108,6 @@ export default function Dashboard() {
                   setActiveDisplay={setActiveDisplay}
                   halfHeight={activeDisplay !== "full"}
                   summary={summary}
-                  setSummary={setSummary}
                 />
               </div>
               {!fullscreen && !(activeDisplay == "full") && (

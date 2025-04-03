@@ -2,18 +2,15 @@
 
 import Image from "next/image";
 import ChatIcon from "./ChatIcon";
-import { Dispatch, SetStateAction, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { Dispatch, SetStateAction } from "react";
 
 interface SummaryFrameProps {
   setActiveDisplay: Dispatch<SetStateAction<string>>;
   halfHeight?: boolean;
   summary: string;
-  setSummary: Dispatch<SetStateAction<string>>;
 }
 
-export default function SummaryFrame({ setActiveDisplay, halfHeight = false, summary, setSummary }: SummaryFrameProps) {
-  const searchParams = useSearchParams();
+export default function SummaryFrame({ setActiveDisplay, halfHeight = false, summary }: SummaryFrameProps) {
 
   const parseToJSX = (htmlString: string) => {
     // Split the string using the <b> tags as a delimiter, but keep the <b> tags
@@ -33,38 +30,6 @@ export default function SummaryFrame({ setActiveDisplay, halfHeight = false, sum
       </div>
     );
   };
-
-  useEffect(() => {
-    const fetchSummary = async () => {
-      const id = searchParams.get("id");
-      const videoUrl = searchParams.get("video_url");
-
-      try {
-        let res;
-        if (videoUrl) {
-          res = await fetch("http://localhost:8000/summary", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ video_url: videoUrl }),
-          });
-        } else {
-          res = await fetch(`http://localhost:8000/summary?id=${id || "1"}`);
-        }
-
-        const data = await res.json();
-        if (data.summary) {
-          setSummary(data.summary.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>"));
-        } else {
-          setSummary("⚠️ No summary found.");
-        }
-      } catch (err) {
-        console.error("Error fetching summary:", err);
-        setSummary("❌ Failed to load summary.");
-      }
-    };
-
-    fetchSummary();
-  }, [searchParams]);
 
   return (
     <div className="flex w-full h-full relative">
