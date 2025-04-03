@@ -7,11 +7,13 @@ import ChartsFrame from "@/components/ChartsFrame";
 import ChatFrame from "@/components/ChatFrame";
 import { useState } from "react";
 import FullChat from "@/components/FullChat";
+import { sentimentData } from "../sentiment-data/tesla";
 
 export default function Dashboard() {
   const [activeDisplay, setActiveDisplay] = useState("full");
   const [chatMinimized, setChatMinimized] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  const [timestamp, setTimestamp] = useState<number>(0);
 
   const messageArray = [
     {
@@ -55,9 +57,9 @@ export default function Dashboard() {
         {!fullscreen && (
           <main className="grid grid-cols-1 lg:grid-cols-[62%_1fr] xl:grid-cols-[62%_1fr] gap-[40px] px-[40px] pb-[30px] max-w-[1536px] m-auto">
             <div className="flex flex-col gap-[40px]">
-              <VideoFrame />
+              <VideoFrame timestamp={timestamp} />
               <div className="w-full grow min-h-[450px]">
-                <ChartsFrame />
+                <ChartsFrame sentimentData={sentimentData} onTimestampClick={setTimestamp} />
               </div>
             </div>
             <div className="flex flex-col gap-[40px] -mt-[40px] sm:max-h-[1100px]">
