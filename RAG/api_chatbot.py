@@ -70,21 +70,27 @@ def save_transcript_in_uploads(video_url, transcript_text):
 def chat_endpoint(req: ChatRequest):
     global retriever, qa_chain, memory, last_used_id
 
-    # 🔁 Always reset if using a YouTube video
+    # Always clear memory and retriever if either source (id or video_url) changed
+    source_changed = False
+
     if req.video_url:
+        # Switching from preloaded to YouTube or new video
+        if last_used_id != f"YT::{req.video_url}":
+            source_changed = True
+            last_used_id = f"YT::{req.video_url}"
+
+    elif req.id:
+        # Switching from YouTube to preloaded or to different preloaded ID
+        if last_used_id != req.id:
+            source_changed = True
+            last_used_id = req.id
+
+    if source_changed:
         memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
         retriever = None
         qa_chain = None
-        last_used_id = None  # clear last static ID to avoid confusion
 
-    # 🔁 Reset memory and chain if static ID has changed
-    elif req.id and req.id != last_used_id:
-        memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-        retriever = None
-        qa_chain = None
-        last_used_id = req.id
-
-    # 🔧 Initialize retriever
+    # Load transcript depending on source
     if req.video_url and not retriever:
         transcript = get_video_transcript(req.video_url)
         if "Error:" in transcript:
@@ -102,7 +108,6 @@ def chat_endpoint(req: ChatRequest):
     if not retriever:
         return {"response": "❌ No transcript loaded. Provide video_url or valid id."}
 
-    # ✅ Build the qa_chain if needed
     if qa_chain is None:
         prompt_template = ChatPromptTemplate.from_template(
             """
