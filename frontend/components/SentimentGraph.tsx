@@ -11,17 +11,33 @@ interface SentimentGraphProps {
 
 // Utility function to format seconds into HH:MM:SS
 const formatTime = (seconds: number): string => {
-  const hrs = Math.floor(seconds / 3600);
-  const mins = Math.floor((seconds % 3600) / 60);
-  const secs = seconds % 60;
+  const roundedSeconds = Math.round(seconds);
+  const hrs = Math.floor(roundedSeconds / 3600);
+  const mins = Math.floor((roundedSeconds % 3600) / 60);
+  const secs = roundedSeconds % 60;
   return [hrs, mins, secs]
     .map((val) => String(val).padStart(2, '0'))
     .join(':');
 };
 
+// Utility function to calculate moving average
+const calculateMovingAverage = (data: number[], windowSize: number): number[] => {
+  const movingAverage: number[] = [];
+  for (let i = 0; i < data.length; i++) {
+    const start = Math.max(0, i - windowSize + 1);
+    const subset = data.slice(start, i + 1);
+    const average = subset.reduce((sum, value) => sum + value, 0) / subset.length;
+    movingAverage.push(average);
+  }
+  return movingAverage;
+};
+
 const SentimentGraph: React.FC<SentimentGraphProps> = ({ sentimentData, onTimestampClick }) => {
   const timestamps = Object.keys(sentimentData).map(Number); // Convert keys to numbers (seconds)
   const sentimentValues = Object.values(sentimentData);
+
+  // Calculate moving average with a window size of 5
+  const movingAverageValues = calculateMovingAverage(sentimentValues, 5);
 
   const chartData = {
     labels: timestamps.map(formatTime), // Format timestamps as HH:MM:SS
@@ -31,12 +47,21 @@ const SentimentGraph: React.FC<SentimentGraphProps> = ({ sentimentData, onTimest
         data: sentimentValues,
         borderColor: 'rgba(128, 209, 141, 255)',
         tension: 0.1,
-        pointRadius: 4, // Make points clickable
+        pointRadius: 2, // Make points clickable
         pointHoverRadius: 6,
-        pointBackgroundColor: 'rgba(128, 209, 141, 255)',
-        pointBorderColor: 'rgba(128, 209, 141, 255)',
+        pointBackgroundColor: 'rgba(128, 209, 141, 0.2)',
+        pointBorderColor: 'rgba(128, 209, 141, 0.2)',
         pointHoverBackgroundColor: 'rgba(128, 209, 141, 255)',
         pointHoverBorderColor: 'rgba(128, 209, 141, 255)',
+        showLine: false,
+      },
+      {
+        label: 'Moving Average',
+        data: movingAverageValues,
+        borderColor: 'rgba(128, 209, 141, 255)',
+        borderWidth: 2,
+        tension: 0.4,
+        pointRadius: 1, // Hide points for the moving average line
       },
     ],
   };
@@ -48,6 +73,9 @@ const SentimentGraph: React.FC<SentimentGraphProps> = ({ sentimentData, onTimest
         display: false,
       },
       tooltip: {
+        enabled: true,
+      },
+      crosshairLine: {
         enabled: true,
       },
     },
@@ -86,6 +114,31 @@ const SentimentGraph: React.FC<SentimentGraphProps> = ({ sentimentData, onTimest
       }
     },
   };
+
+  // Custom plugin for vertical line
+  const verticalLinePlugin = {
+    id: 'verticalLine',
+    afterDraw: (chart: any) => {
+      if (chart.tooltip._active && chart.tooltip._active.length) {
+        const ctx = chart.ctx;
+        const activePoint = chart.tooltip._active[0];
+        const x = activePoint.element.x;
+        const topY = chart.scales.y.top;
+        const bottomY = chart.scales.y.bottom;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(x, topY);
+        ctx.lineTo(x, bottomY);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(128, 209, 141, 0.5)';
+        ctx.stroke();
+        ctx.restore();
+      }
+    },
+  };
+
+  ChartJS.register(verticalLinePlugin);
 
   return (
     <div className="flex w-full h-full box-border pl-6 pr-6 py-2">
