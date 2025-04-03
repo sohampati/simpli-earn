@@ -12,6 +12,7 @@ export default function Dashboard() {
   const [activeDisplay, setActiveDisplay] = useState("full");
   const [chatMinimized, setChatMinimized] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  const [timestamp, setTimestamp] = useState<number>(0);
 
   const messageArray = [
     {
@@ -25,6 +26,47 @@ export default function Dashboard() {
       text: "The decision to invest in the stock market depends on various factors, including your financial goals, risk tolerance, and market conditions. Historically, markets tend to rise over the long term, but short-term fluctuations are common. Diversification and a well-thought-out strategy can help manage risk.\n\nIf you're unsure, consulting a financial advisor or conducting thorough research on economic indicators, interest rates, and company performance may be beneficial before making investment decisions.",
     },
   ];
+
+  const sentimentData = {
+    10: 0.2, // 10s → Sentiment: 0.2
+    50: -0.8, // 50s → Sentiment: -0.8
+    180: 0.1, // 3m → Sentiment: 0.1
+    300: -0.5, // 5m → Sentiment: -0.5
+    420: 0.4, // 7m → Sentiment: 0.4
+    540: -0.7, // 9m → Sentiment: -0.7
+    660: 0.3, // 11m → Sentiment: 0.3
+    780: -0.6, // 13m → Sentiment: -0.6
+    900: 0.9, // 15m → Sentiment: 0.9
+    1020: -0.2, // 17m → Sentiment: -0.2
+    1140: 0.4, // 19m → Sentiment: 0.4
+    1260: -0.3, // 21m → Sentiment: -0.3
+    1380: 0.6, // 23m → Sentiment: 0.6
+    1500: -0.8, // 25m → Sentiment: -0.8
+    1620: 0.5, // 27m → Sentiment: 0.5
+    1740: -0.7, // 29m → Sentiment: -0.7
+    1860: 0.1, // 31m → Sentiment: 0.1
+    1980: -0.3, // 33m → Sentiment: -0.3
+    2100: 0.9, // 35m → Sentiment: 0.9
+    2220: -0.2, // 37m → Sentiment: -0.2
+    2340: 0.4, // 39m → Sentiment: 0.4
+    2460: -0.3, // 41m → Sentiment: -0.3
+    2580: 0.6, // 43m → Sentiment: 0.6
+    2700: -0.8, // 45m → Sentiment: -0.8
+    2820: 0.5, // 47m → Sentiment: 0.5
+    2940: -0.7, // 49m → Sentiment: -0.7
+    3060: 0.1, // 51m → Sentiment: 0.1
+    3180: -0.3, // 53m → Sentiment: -0.3
+    3300: 0.9, // 55m → Sentiment: 0.9
+    3420: -0.2, // 57m → Sentiment: -0.2
+    3540: 0.4, // 59m → Sentiment: 0.4
+    3660: -0.3, // 61m → Sentiment: -0.3
+    3780: 0.6, // 63m → Sentiment: 0.6
+    3900: -0.8, // 65m → Sentiment: -0.8
+    4020: 0.5, // 67m → Sentiment: 0.5
+    4140: -0.7, // 69m → Sentiment: -0.7
+    4260: 0.1, // 71m → Sentiment: 0.1
+    4380: -0.3, // 73m → Sentiment: -0.3
+  };
 
   const [messages, setMessages] = useState(messageArray);
 
@@ -55,9 +97,9 @@ export default function Dashboard() {
         {!fullscreen && (
           <main className="grid grid-cols-1 lg:grid-cols-[62%_1fr] xl:grid-cols-[62%_1fr] gap-[40px] px-[40px] pb-[30px] max-w-[1536px] m-auto">
             <div className="flex flex-col gap-[40px]">
-              <VideoFrame />
+              <VideoFrame timestamp={timestamp} />
               <div className="w-full grow min-h-[450px]">
-                <ChartsFrame />
+                <ChartsFrame sentimentData={sentimentData} onTimestampClick={setTimestamp} />
               </div>
             </div>
             <div className="flex flex-col gap-[40px] -mt-[40px] sm:max-h-[1100px]">
