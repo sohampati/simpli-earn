@@ -63,7 +63,7 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex flex-col gap-[40px] -mt-[40px] sm:max-h-[1100px]">
-              <div className="h-[500px] lg:h-full">
+              <div className={`h-[500px] ${activeDisplay == "full" ? "lg:h-full" : "lg:h-[calc(0.34875*(100vw-80px)+80px)] 2xl:h-[587.78px]"}`}>
                 <SummaryFrame
                   setActiveDisplay={setActiveDisplay}
                   halfHeight={activeDisplay !== "full"}
