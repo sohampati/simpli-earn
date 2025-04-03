@@ -2,18 +2,17 @@
 
 import Image from "next/image";
 import ChatIcon from "./ChatIcon";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function SummaryFrame({
-  setActiveDisplay,
-  halfHeight = false,
-}: {
+interface SummaryFrameProps {
   setActiveDisplay: Dispatch<SetStateAction<string>>;
   halfHeight?: boolean;
-}) {
-  const [summary, setSummary] = useState("Loading summary...");
-  const [error, setError] = useState("");
+  summary: string;
+  setSummary: Dispatch<SetStateAction<string>>;
+}
+
+export default function SummaryFrame({ setActiveDisplay, halfHeight = false, summary, setSummary }: SummaryFrameProps) {
   const searchParams = useSearchParams();
 
   const parseToJSX = (htmlString: string) => {
@@ -60,7 +59,7 @@ export default function SummaryFrame({
         }
       } catch (err) {
         console.error("Error fetching summary:", err);
-        setError("❌ Failed to load summary.");
+        setSummary("❌ Failed to load summary.");
       }
     };
 
@@ -110,7 +109,7 @@ export default function SummaryFrame({
               </span>
             )}
             <div className="pt-4 px-8 pb-8 -mb-[144px] whitespace-pre-wrap">
-              {error || parseToJSX(summary)}
+              {parseToJSX(summary)}
             </div>
           </div>
         </div>
