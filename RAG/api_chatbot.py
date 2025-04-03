@@ -111,11 +111,14 @@ def chat_endpoint(req: ChatRequest):
     if qa_chain is None:
         prompt_template = ChatPromptTemplate.from_template(
             """
-            You are a financial assistant providing insights from this document you currently have.
+            You are a financial assistant providing insights from this transcript of an earnings call you currently have.
             You are to give objective answers at all times.
             This document is the earnings call of a given company, and it will have typical information such as the name of the company, the participants at the start of the document.
             Use the provided context and chat history to answer the user's questions.
             If the question is irrelevant to the document, politely state so.
+            Assume the user is not a financial expert.
+            If the user states anything unrelated to the earnings call (need not be a question), please do not answer it and let them know that you are only allowed to answer questions and provide information of the given earnings call.
+            
 
             Context: {context}
             Chat History: {chat_history}
@@ -194,7 +197,9 @@ def generate_summary_from_youtube(data: dict = Body(...)):
         prompt = PromptTemplate(
             input_variables=["transcript"],
             template="""
-You are a financial analyst assistant. Read the following earnings call transcript and generate a detailed yet concise summary highlighting the key financial results, executive commentary, and any forward-looking statements.
+You are a financial analyst assistant. Read the following earnings call transcript and generate a summary highlighting the key financial results, executive commentary, and any forward-looking statements.
+Don't make it too long and do not use complicated financial terminology, assume the user has little knowledge of finance. 
+If you do want to use complicated terminology/jargon please do define it as well/explain it so it is clear for the user.
 
 Transcript:
 {transcript}
