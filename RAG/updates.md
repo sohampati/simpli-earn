@@ -2,7 +2,13 @@
 
 For any questions, please reach out on Slack/other preferred mode of communication.
 
-## Last Updated: April 2, 2025 (Neil)
+## Last Updated: April 3, 2025 (Neil)
+
+- Now takes in YouTube links and generates summary dynamically.
+- Chatting works with both YouTube and preloaded transcripts.
+- From a RAG standpoint - mostly done, although some prompt enhancements and improving the way memory is managed, will need to be done in the future.
+
+## April 2, 2025 (Neil)
 
 - Frontend has mostly been integrated with RAG code.
 - Chatting now works with the six library transcripts, and summary generation works as well.
