@@ -4,23 +4,28 @@ import { useState } from "react";
 import SentimentGraph from "./SentimentGraph";
 import StockChart from "./StockChart";
 import { useSearchParams } from "next/navigation";
+import { teslaData } from "../app/sentiment-data/tesla";
+import { appleData } from "../app/sentiment-data/apple";
+import { googleData } from "../app/sentiment-data/google";
+import { shellData } from "../app/sentiment-data/shell";
+import { cvsData } from "../app/sentiment-data/cvs";
+import { walmartData } from "../app/sentiment-data/walmart";
 
 // Dashboard configurations
-const dashboardConfigs: Record<string, { ticker: string; date: string }> = {
-  "1": { ticker: "AAPL", date: "2/2/25" },
-  "2": { ticker: "CVS", date: "11/6/24" },
-  "3": { ticker: "GOOGL", date: "2/4/25" },
-  "4": { ticker: "SHEL", date: "1/30/25" },
-  "5": { ticker: "TSLA", date: "1/29/25" },
-  "6": { ticker: "WMT", date: "2/20/25" }
+const dashboardConfigs: Record<string, { ticker: string; date: string; sentimentData: Record<string, number> }> = {
+  "1": { ticker: "AAPL", date: "2/2/25", sentimentData: appleData },
+  "2": { ticker: "CVS", date: "11/6/24", sentimentData: cvsData },
+  "3": { ticker: "GOOGL", date: "2/4/25", sentimentData: googleData },
+  "4": { ticker: "SHEL", date: "1/30/25", sentimentData: shellData },
+  "5": { ticker: "TSLA", date: "1/29/25", sentimentData: teslaData },
+  "6": { ticker: "WMT", date: "2/20/25", sentimentData: walmartData }
 };
 
 interface ChartsFrameSentimentGraphProps {
-  sentimentData: Record<string, number>; // Dictionary of timestamp (x-axis) and sentiment value (y-axis)
   onTimestampClick: (timestamp: number) => void; // Callback to update video timestamp
 }
 
-export default function ChartsFrame({ sentimentData, onTimestampClick }: ChartsFrameSentimentGraphProps) {
+export default function ChartsFrame({ onTimestampClick }: ChartsFrameSentimentGraphProps) {
   const [activeTab, setActiveTab] = useState("stock");
   const searchParams = useSearchParams();
   const dashboardId = searchParams.get("id");
@@ -95,7 +100,14 @@ export default function ChartsFrame({ sentimentData, onTimestampClick }: ChartsF
             </div>
 
             <div className="flex justify-center items-center w-full h-full">
-              <SentimentGraph sentimentData={sentimentData} onTimestampClick={onTimestampClick} />
+              {config ? (
+                <SentimentGraph sentimentData={config.sentimentData} onTimestampClick={onTimestampClick} />
+              ) : (
+                <div className="text-center text-white/70">
+                  <p className="text-lg font-medium">Unable to display sentiment data</p>
+                  <p className="text-sm mt-2">Please select a valid dashboard</p>
+                </div>
+              )}
             </div>
           </div>
         )}

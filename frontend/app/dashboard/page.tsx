@@ -7,7 +7,6 @@ import ChartsFrame from "@/components/ChartsFrame";
 import ChatFrame from "@/components/ChatFrame";
 import { useState, useEffect } from "react";
 import FullChat from "@/components/FullChat";
-import { sentimentData } from "../sentiment-data/tesla";
 import { useSearchParams } from "next/navigation";
 
 export default function Dashboard() {
@@ -100,7 +99,6 @@ export default function Dashboard() {
               <VideoFrame timestamp={timestamp} />
               <div className="w-full grow min-h-[450px]">
                 <ChartsFrame
-                  sentimentData={sentimentData}
                   onTimestampClick={setTimestamp}
                 />
               </div>
