@@ -1,6 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ChartEvent, Chart } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -101,12 +101,12 @@ const SentimentGraph: React.FC<SentimentGraphProps> = ({ sentimentData, onTimest
         },
         grid: {
           drawBorder: true,
-          color: (context: any) => (context.tick.value === 0 ? 'rgba(255, 255, 255, 0.5)' : 'rgba(255, 255, 255, 0.1)'),
-          lineWidth: (context: any) => (context.tick.value === 0 ? 2 : 1),
+          color: (context: { tick: { value: number } }) => (context.tick.value === 0 ? 'rgba(255, 255, 255, 0.5)' : 'rgba(255, 255, 255, 0.1)'),
+          lineWidth: (context: { tick: { value: number } }) => (context.tick.value === 0 ? 2 : 1),
         },
       },
     },
-    onClick: (event: any, elements: any[]) => {
+    onClick: (event: ChartEvent, elements: { index: number }[]) => {
       if (elements.length > 0) {
         const index = elements[0].index; // Get the clicked data point index
         const timestamp = timestamps[index]; // Get the corresponding timestamp in seconds
@@ -118,10 +118,21 @@ const SentimentGraph: React.FC<SentimentGraphProps> = ({ sentimentData, onTimest
   // Custom plugin for vertical line
   const verticalLinePlugin = {
     id: 'verticalLine',
-    afterDraw: (chart: any) => {
-      if (chart.tooltip._active && chart.tooltip._active.length) {
+    afterDraw: (chart: Chart) => {
+      // Get the tooltip model
+      const tooltipModel = chart.tooltip;
+      
+      // If tooltip is not active, don't draw anything
+      if (!tooltipModel || !tooltipModel.opacity) {
+        return;
+      }
+      
+      // Get the active elements
+      const activeElements = tooltipModel.dataPoints || [];
+      
+      if (activeElements.length > 0) {
         const ctx = chart.ctx;
-        const activePoint = chart.tooltip._active[0];
+        const activePoint = activeElements[0];
         const x = activePoint.element.x;
         const topY = chart.scales.y.top;
         const bottomY = chart.scales.y.bottom;
