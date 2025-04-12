@@ -157,7 +157,7 @@ def generate_summary(id: str = Query("1")):
         prompt = PromptTemplate(
             input_variables=["transcript"],
             template="""
-You are a financial analyst assistant. Read the following earnings call transcript and generate a detailed yet concise summary highlighting the key financial results, executive commentary, and any forward-looking statements.
+You are a financial analyst assistant. Read the following earnings call transcript and generate a detailed yet concise summary highlighting the key financial results, executive commentary, and any forward-looking statements. Bold any key terms in the summary. Start the summary with a very brief (max one paragraph) overall summary of the call, then go into a mode detailed summary.
 
 Transcript:
 {transcript}
