@@ -118,6 +118,7 @@ def chat_endpoint(req: ChatRequest):
             If the question is irrelevant to the document, politely state so.
             Assume the user is not a financial expert.
             If the user states anything unrelated to the earnings call (need not be a question), please do not answer it and let them know that you are only allowed to answer questions and provide information of the given earnings call.
+            Do not start your response by citing the transcript of the call.
             
 
             Context: {context}
