@@ -29,6 +29,24 @@
   font-weight: 300;
 }
 
+.heroText {
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.orgLink {
+  color: #81D18D;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.orgLink:hover {
+  color: #5da769;
+  text-decoration: underline;
+}
+
 .teamSection {
   margin-top: 60px;
 }
