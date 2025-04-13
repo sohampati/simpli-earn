@@ -6,7 +6,7 @@ export default function Footer() {
           <div className="flex items-center space-x-4 mt-2 md:mt-0">
             <a href="/about" className="transition-all hover:text-white">About Us</a>
             <a href="/faq" className="transition-all hover:text-white">FAQ&rsquo;s</a>
-            <a href="/contact" className="transition-all hover:text-white">Contact Us</a>
+            <a href="mailto:simpliearnbdbi@gmail.com" className="transition-all hover:text-white">Contact Us</a>
             <a
               href="mailto:simpliearnbdbi@gmail.com"
               className="hover:text-white"
