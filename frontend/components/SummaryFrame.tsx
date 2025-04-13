@@ -2,19 +2,15 @@
 
 import Image from "next/image";
 import ChatIcon from "./ChatIcon";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Dispatch, SetStateAction } from "react";
 
-export default function SummaryFrame({
-  setActiveDisplay,
-  halfHeight = false,
-}: {
+interface SummaryFrameProps {
   setActiveDisplay: Dispatch<SetStateAction<string>>;
   halfHeight?: boolean;
-}) {
-  const [summary, setSummary] = useState("Loading summary...");
-  const [error, setError] = useState("");
-  const searchParams = useSearchParams();
+  summary: string;
+}
+
+export default function SummaryFrame({ setActiveDisplay, halfHeight = false, summary }: SummaryFrameProps) {
 
   const parseToJSX = (htmlString: string) => {
     // Split the string using the <b> tags as a delimiter, but keep the <b> tags
@@ -24,9 +20,9 @@ export default function SummaryFrame({
     return (
       <div>
         {parts.map((part, index) => {
-          if (part.startsWith('<b>') && part.endsWith('</b>')) {
+          if (part.startsWith("<b>") && part.endsWith("</b>")) {
             // Render the bold text within <b> tags
-            return <b key={index}>{part.replace(/<b>|<\/b>/g, '')}</b>;
+            return <b key={index}>{part.replace(/<b>|<\/b>/g, "")}</b>;
           }
           // Otherwise, render the regular text
           return <span key={index}>{part}</span>;
@@ -34,26 +30,6 @@ export default function SummaryFrame({
       </div>
     );
   };
-
-  useEffect(() => {
-    const fetchSummary = async () => {
-      const id = searchParams.get("id") || "1";
-      try {
-        const res = await fetch(`http://localhost:8000/summary?id=${id}`);
-        const data = await res.json();
-        if (data.summary) {
-          setSummary(data.summary.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'));
-        } else {
-          setSummary("⚠️ No summary found.");
-        }
-      } catch (err) {
-        console.error("Error fetching summary:", err);
-        setError("❌ Failed to load summary.");
-      }
-    };
-
-    fetchSummary();
-  }, [searchParams]);
 
   return (
     <div className="flex w-full h-full relative">
@@ -98,7 +74,7 @@ export default function SummaryFrame({
               </span>
             )}
             <div className="pt-4 px-8 pb-8 -mb-[144px] whitespace-pre-wrap">
-              {error || parseToJSX(summary)}
+              {parseToJSX(summary)}
             </div>
           </div>
         </div>

@@ -1,10 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaSearch, FaChevronDown } from "react-icons/fa";
 import { TbSend2 } from "react-icons/tb";
 import mockCalls from "@/public/data/mock-calls.json";
 
+import { useState } from "react";
+
 export default function Home() {
+  const [youtubeLink, setYoutubeLink] = useState("");
+
   return (
     <div className="-mb-15 bg-[url(/bg.svg)] bg-cover justify-items-center pt-35 md:pt-40 pb-25 md:pb-30 px-8 md:px-12 gap-16 font-[family-name:var(--font-montserrat)]">
       <main className="text-center flex flex-col gap-8 row-start-2 items-center max-w-[1100px]">
@@ -33,10 +39,18 @@ export default function Home() {
           <div className="w-full rounded-full bg-[rgba(234, 250, 236, 0.14)] flex items-center">
             <FaSearch className="ml-3 text-[#808280]" />
             <input
-              className="-ml-7 py-2 px-10 bg-[rgba(234,250,236,0.14)] rounded-full inset-shadow-sm inset-shadow-[rgba(0,0,0,0.25)] w-full"
+              value={youtubeLink}
+              onChange={(e) => setYoutubeLink(e.target.value)}
               placeholder="Paste call link here...."
+              className="-ml-7 py-2 px-10 bg-[rgba(234,250,236,0.14)] rounded-full inset-shadow-sm inset-shadow-[rgba(0,0,0,0.25)] w-full"
             />
-            <Link className="-ml-11" href="/dashboard">
+            <Link
+              className="-ml-11"
+              href={{
+                pathname: "/dashboard",
+                query: { video_url: youtubeLink },
+              }}
+            >
               <div className="transition-all bg-green rounded-full px-2 py-1 hover:brightness-80">
                 <TbSend2 size={20} className="text-[#2D322E]" />
               </div>

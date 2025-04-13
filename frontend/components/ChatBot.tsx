@@ -21,7 +21,8 @@ export default function ChatBot({
   setMessages: Dispatch<SetStateAction<Message[]>>;
 }) {
   const searchParams = useSearchParams();
-  const dashboardId = searchParams.get("id") || "1"; // Default to Apple
+  const dashboardId = searchParams.get("id") || null;
+  const videoUrl = searchParams.get("video_url") || null;
 
   const [userInput, setUserInput] = useState("");
 
@@ -46,7 +47,7 @@ export default function ChatBot({
           body: JSON.stringify({
             message: userInput,
             id: dashboardId, // Tesla dashboard for now (can be made dynamic)
-            // video_url: "https://www.youtube.com/watch?v=xyz" // future support
+            video_url: videoUrl,
           }),
         });
 

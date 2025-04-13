@@ -1,10 +1,12 @@
 # Simpli-Earn
 
-As of April 2, 2025:
+As of April 3, 2025:
 
-The RAG code has mostly been integrated with the frontend, and now chatting functionality with the library earnings calls works perfectly. It is now left to add functionality of entering a YouTube link.
+Additional frontend improvements to fix the footer and summary generation were made, but you can now enter a YouTube link on the main page and see the summary generation and use SimpliChat as normal.
 
-Major frontend improvements were also made, such as fixing the dark text and ensuring chats persist when switching to/from full-screen and also when closing/reopening the window in the dashboard.
+The video embed is also dynamic now. The Sentiment Analysis graph currently has dummy data, but clicking on the graph points does bring the video to those actual times.
+
+Stock Chart functionality is still a work in progress.
 
 To run the frontend, you need to have `npm` (installing this should be easy through a quick Google search) and should run `npm install -i` in the `frontend` folder.
 
@@ -14,4 +16,4 @@ For other subteams, please clone this repository/make a branch and make a new fo
 
 (This can be changed as per further instructions)
 
-## This file was last updated on April 2, 2025
+## This file was last updated on April 3, 2025

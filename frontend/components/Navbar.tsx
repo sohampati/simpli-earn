@@ -106,7 +106,7 @@ const NavBar: React.FC = () => {
       >
         <Link href="/about" className="nav-link">About Us</Link>
         <Link href="/faq" className="nav-link">FAQ&rsquo;s</Link>
-        <Link href="#contactUs"className="nav-link">Contact Us</Link>
+        <Link href="mailto:simpliearnbdbi@gmail.com"className="nav-link">Contact Us</Link>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-5">
@@ -156,7 +156,7 @@ const NavBar: React.FC = () => {
 
         {/* Open Dashboard Button */}
         <Link
-          href="/dashboard"
+          href="/dashboard?id=1"
           style={{
             textDecoration: 'none',
             borderRadius: '50px',
