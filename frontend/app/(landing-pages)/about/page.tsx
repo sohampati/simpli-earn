@@ -20,6 +20,26 @@ const teamMembers = [
     },
   },
   {
+    name: "Vidyut Rajagopal",
+    role: "Project Lead",
+    description: "Vidyut is a freshman at Georgia Tech and the co-founder of SimpliEarn. He has a strong interest in cybersecurity, cloud computing, and software development. Vidyut is passionate about applying technology to real-world challenges—especially in finance, leadership, and client-facing domains. Outside of his work with SimpliEarn, he enjoys producing music, publishing articles, and playing cricket.",
+    image: "/images/team_imgs/Vidyut_Raj.jpg",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/vidyut-rajagopal",
+      github: "https://github.com/vidyutraj",
+    },
+  },
+  {
+    name: "Ritwij Ghosh",
+    role: "Project Lead",
+    description: "Ritwij is a CS major from São Paulo, Brazil with a keen interest in applying machine learning and AI to finance and business use cases.",
+    image: "/images/team_imgs/Ritwij_Ghosh.jpeg",
+    socials: {
+      linkedin: "http://www.linkedin.com/in/ritwij-ghosh",
+      github: "https://github.com/ritwij-ghosh",
+    },
+  },
+  {
     name: "Evelyn Chen",
     role: "Data Visualization",
     description: "Hello hello! I'm Evelyn (she/her), and I'm from Portland, OR. I love to learn new things and enjoy using my creativity and technical programming experience to build full-stack applications. Aside from computer science, I love rock climbing, all thing outdoors (hiking, catching sunrises/sunsets, running), crafting (birthday cards are so fun!), and taking too many pics on my digital camera.",
@@ -47,6 +67,66 @@ const teamMembers = [
     socials: {
       linkedin: "https://www.linkedin.com/in/li-kate",
       github: "https://github.com/li-kate",
+    },
+  },
+  {
+    name: "Apramey Akkiraju",
+    role: "Front-end Development",
+    description: "Apramey is a computer science student passionate about fin-tech and the financial services domain as a whole. He joined Simpli-Earn because the mission of making investing a more accessible practice by simplifying a relatively unknown aspect of company information resonated with him.",
+    image: "/images/team_imgs/Apramey_Akkiraju.jpeg",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/aprameyakkiraju/",
+      github: "https://github.com/Apramey006",
+    },
+  },
+  {
+    name: "Soham Pati",
+    role: "Software Engineer – RAG",
+    description: "Soham Pati is a current second year Computer Science student @ Georgia Tech. He loves to golf and play the violin in his free time.",
+    image: "/images/team_imgs/Soham_Pati.jpeg",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/soham--pati/",
+      github: "https://github.com/sohampati",
+    },
+  },
+  {
+    name: "Soungmin (Min) Lee",
+    role: "Pipeline/Model – Sentiment Analysis",
+    description: "I'm a BS/MS student majoring Computer Science at Georgia Tech. I specialize in NLP and full-stack development, and enthusiastic in building software solutions to solve real-world problems.",
+    image: "/images/team_imgs/Soungmin_Lee.png",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/soung-min-lee/",
+      github: "https://github.com/minovermax",
+    },
+  },
+  {
+    name: "Ethan Hu",
+    role: "Sentiment Analysis",
+    description: "First-year computer science student from Greater Boston area. Interested in numbers. Enjoys spending time outdoors and baking desserts.",
+    image: "/images/team_imgs/Ethan_Hu.jpeg",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/ethanhu89/",
+      github: "https://github.com/ethanhu89",
+    },
+  },
+  {
+    name: "Gauri Sharma",
+    role: "Sentiment Analysis Team",
+    description: "I'm a Computer Science student at Georgia Tech with an interest in Natural Language Processing and finance!",
+    image: "/images/team_imgs/Gauri_Sharma.png",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/gs-softwaredev/",
+      github: "https://github.com/gauri-sharmaa",
+    },
+  },
+  {
+    name: "Zechariah Frierson",
+    role: "Data Viz & Frontend",
+    description: "Zechariah is a freshman at Georgia Tech and a member of the data visualization team for SimpliEarn. He loves frontend web development, web design, and coding in general. Outside of programming, Zechariah enjoys playing soccer and volleyball, and spending time with friends. He is excited to work with such a talented team on a project that can provide value to anyone!",
+    image: "/images/team_imgs/Zechariah_Frierson.jpg",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/zechariah-frierson/",
+      github: "https://github.com/techo10n",
     },
   },
 ];
