@@ -118,6 +118,7 @@ def chat_endpoint(req: ChatRequest):
             If the question is irrelevant to the document, politely state so.
             Assume the user is not a financial expert.
             If the user states anything unrelated to the earnings call (need not be a question), please do not answer it and let them know that you are only allowed to answer questions and provide information of the given earnings call.
+            Do not start your response by citing the transcript of the call.
             
 
             Context: {context}
@@ -157,7 +158,7 @@ def generate_summary(id: str = Query("1")):
         prompt = PromptTemplate(
             input_variables=["transcript"],
             template="""
-You are a financial analyst assistant. Read the following earnings call transcript and generate a detailed yet concise summary highlighting the key financial results, executive commentary, and any forward-looking statements.
+You are a financial analyst assistant. Read the following earnings call transcript and generate a detailed yet concise summary highlighting the key financial results, executive commentary, and any forward-looking statements. Bold any key terms in the summary. Start the summary with a very brief (max one paragraph) overall summary of the call, then go into a mode detailed summary.
 
 Transcript:
 {transcript}

@@ -1,5 +1,14 @@
 # Simpli-Earn
 
+## Git Practices
+* Make a new branch for any feature addition formatted "initials/subteam/feature"
+* Do not commit directly to main (even for small changes) so we can make sure the main branch remains error free. You should instead make a new branch off main, add the feature you are working on, and then open a pull request (and send it on Slack) so someone can review it
+    * Sidenote: when you do this, you should git fetch & merge main into your local branch to make sure there aren't a lot of merge conflicts later on
+
+Feel free to message Parth on Slack or text if you have any questions!
+
+## General Info
+
 As of April 3, 2025:
 
 Additional frontend improvements to fix the footer and summary generation were made, but you can now enter a YouTube link on the main page and see the summary generation and use SimpliChat as normal.
