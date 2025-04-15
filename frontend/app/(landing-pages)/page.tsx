@@ -110,7 +110,7 @@ export default function Home() {
                     />
                     <h4 className="text-lg font-bold mt-3">
                       {call.symbol} (Q{call.quarter}{" "}
-                      {new Date(call.date).getFullYear()})
+                      {call.symbol === "GOOGL" || call.symbol === "SHEL" || call.symbol === "TSLA" || call.symbol === "WMT" ? "2024" : new Date(call.date).getFullYear()})
                     </h4>
                     <p className="text-sm text-gray-400">{formattedDate}</p>
                   </div>
