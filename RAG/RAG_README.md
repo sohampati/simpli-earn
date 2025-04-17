@@ -1,6 +1,6 @@
 # README for the RAG API
 
-# Update: April 2, 2025 by Neil Samant
+# Update: April 16, 2025 by Neil Samant
 
 The RAG code has now been turned into an API, and it needs to be run with the frontend (most typically through a second command prompt/terminal).
 

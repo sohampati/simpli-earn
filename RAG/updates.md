@@ -2,7 +2,13 @@
 
 For any questions, please reach out on Slack/other preferred mode of communication.
 
-## Last Updated: April 3, 2025 (Neil)
+## Last Updated: April 16, 2025
+
+- Summary prompts slightly updated.
+- RAG POV - prompts may slightly need to be improved, but overall success rate and quality of responses is high
+- For the first semester - quite satisfied with the work, but will look to improve response times and other details in the summary/chatbot responses.
+
+## April 3, 2025 (Neil)
 
 - Now takes in YouTube links and generates summary dynamically.
 - Chatting works with both YouTube and preloaded transcripts.
