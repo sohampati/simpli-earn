@@ -20,14 +20,15 @@ function DashboardContent() {
 
       try {
         let res;
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
         if (videoUrl) {
-          res = await fetch("http://localhost:8000/summary", {
+          res = await fetch(`${baseUrl}/summary`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ video_url: videoUrl }),
           });
         } else {
-          res = await fetch(`http://localhost:8000/summary?id=${id || "1"}`);
+          res = await fetch(`${baseUrl}/summary?id=${id || "1"}`);
         }
 
         const data = await res.json();
