@@ -91,20 +91,27 @@ export default function ChatBot({
     };
     setMessages((prev) => [...prev, newMessage]);
 
-    // Send the suggestion to the backend
-    (async () => {
-      try {
-        const res = await fetch("http://localhost:8000/chat", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: suggestion,
-            id: dashboardId,
-            video_url: videoUrl,
-          }),
-        });
+(async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: suggestion,
+        id: dashboardId,
+        video_url: videoUrl,
+      }),
+    });
+
+    const data = await res.json();
+    console.log("Response:", data);
+    // handle response as needed
+  } catch (err) {
+    console.error("Error sending suggestion:", err);
+  }
+})();
 
         const data = await res.json();
         const botMessage: Message = {
