@@ -25,10 +25,13 @@ app = FastAPI()
 # Add this block to enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins for dev; tighten in prod
+    allow_origins=[
+        "https://simpli-earn-vuj2.vercel.app",
+        "http://localhost:3000",
+    ],
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Persistent objects
